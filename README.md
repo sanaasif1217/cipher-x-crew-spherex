@@ -18,7 +18,7 @@ It is demonstrated end-to-end on real data: five SPHEREx observations of the int
 - Difference imaging (epoch 5 − epoch 1) with artifact rejection recovers the comet as the **strongest genuine extended mover** in the field; in the clean same-detector test (epoch 3 − epoch 1) its vacated/appeared pair ranks 3rd and 4th among extended sources (peak SNR ≈ 294 / 253)
 - The comet's sampled wavelength swept **1.213 → 1.827 µm** across the morning as it crossed SPHEREx's detector gradient — a five-point spectral trace written by its own motion
 - **751 Gaia DR3 sources** in the field; the nearest fixed Gaia star is 51″ from the comet's first position and 27″ from its last — the comet is in no fixed-sky catalogue, because it moves
-- **4,417 NEOSSat observations** target 3I/ATLAS in the CADC archive; 44 overlap this field on 2025-12-13/14. One real NEOSSat science frame (15 s, 2025-12-14 07:58:59 UTC) is analysed in the pipeline — honestly, the comet is not detectable in that single frame (control-tested); stacking all 44 frames is future work
+- **4,417 NEOSSat observations** target 3I/ATLAS in the CADC archive; 44 overlap this field on 2025-12-13/14. One real NEOSSat science frame (15 s, 2025-12-14 07:58:59 UTC) is analysed in the pipeline — honestly, the comet is not detectable in that single frame (control-tested). Step 14 shift-and-stacks the 40 calibrated frames (600 s total, aligned on the JPL Horizons position): the comet is detected at SNR 12.4 as an extended coma, above all 400 control positions, present in both halves of the night independently and absent at ±90″ offset positions
 
 ## Repository layout
 

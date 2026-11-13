@@ -1,0 +1,1014 @@
+{
+ "task": "Step 14: NEOSSat 44-frame shift-and-stack for 3I/ATLAS",
+ "field": {
+  "centre_ra_deg": 167.1309,
+  "centre_dec_deg": 5.1732,
+  "overlap_circle_radius_deg": 0.5
+ },
+ "frames_attempted": 44,
+ "frames_downloaded": 44,
+ "frames_used_in_stack": 40,
+ "total_exposure_s_stacked": 600.2,
+ "ephemeris_source": "JPL Horizons ephemeris, designation C/2025 N1, geocentric",
+ "ephemeris_crosscheck": {
+  "vs_step04_linear_fit_max_arcsec": 22.49,
+  "vs_step04_linear_fit_median_arcsec": 0.52,
+  "note": "Horizons is primary; the linear fit is extrapolated ~18 h before SPHEREx epoch 1 for the earliest frames."
+ },
+ "stack_method": {
+  "alignment": "per-frame WCS; cutout re-centred on the predicted comet position with sub-pixel shift",
+  "per_frame_sky": "frame median subtracted before stacking",
+  "cutout_px": 201,
+  "primary_stack": "pixel-wise median (robust to cosmic rays and saturated pixels)",
+  "variant_stack": "pixel-wise mean (reported alongside)",
+  "excluded_from_stack": "4 observations exist only as calibrationLevel-1 raw FITS (no _cor product) and were not mixed with calibrated frames"
+ },
+ "detection_rule": "detection iff, on the primary (median) stack, the PSF-matched r=8 px aperture has SNR >= 5 AND centre excess above the 99th percentile of 400 controls, AND the excess appears in both independent time-clusters and both split halves (>= 99th percentile each), AND it vanishes (< 99th percentile) in all four +/-90 arcsec offset-ephemeris stacks. Radii follow step 08 (3/5/8 px); this product's stellar PSF sigma is ~6 px (step 08), so the r=3 core aperture is reported but is not the decision aperture for an extended source.",
+ "detection_test_median_stack": {
+  "stack": "median",
+  "radii": {
+   "3": {
+    "centre_excess_adu": 884.5,
+    "centre_snr": 1.81,
+    "control_excess_median_adu": 76.0,
+    "control_excess_p95_adu": 1220.5,
+    "control_excess_p99_adu": 1825.5,
+    "centre_percentile_vs_controls": 88.0,
+    "n_controls": 400
+   },
+   "5": {
+    "centre_excess_adu": 3452.5,
+    "centre_snr": 4.63,
+    "control_excess_median_adu": 132.2,
+    "control_excess_p95_adu": 2768.1,
+    "control_excess_p99_adu": 4672.6,
+    "centre_percentile_vs_controls": 96.8,
+    "n_controls": 400
+   },
+   "8": {
+    "centre_excess_adu": 12707.1,
+    "centre_snr": 12.42,
+    "control_excess_median_adu": 468.5,
+    "control_excess_p95_adu": 5049.2,
+    "control_excess_p99_adu": 7604.6,
+    "centre_percentile_vs_controls": 100.0,
+    "n_controls": 400
+   }
+  }
+ },
+ "detection_test_mean_stack": {
+  "stack": "mean",
+  "radii": {
+   "3": {
+    "centre_excess_adu": 1323.0,
+    "centre_snr": 2.48,
+    "control_excess_median_adu": 92.9,
+    "control_excess_p95_adu": 2915.8,
+    "control_excess_p99_adu": 6206.3,
+    "centre_percentile_vs_controls": 83.2,
+    "n_controls": 400
+   },
+   "5": {
+    "centre_excess_adu": 2973.7,
+    "centre_snr": 3.02,
+    "control_excess_median_adu": 676.3,
+    "control_excess_p95_adu": 8026.1,
+    "control_excess_p99_adu": 16243.8,
+    "centre_percentile_vs_controls": 80.2,
+    "n_controls": 400
+   },
+   "8": {
+    "centre_excess_adu": 9782.5,
+    "centre_snr": 6.05,
+    "control_excess_median_adu": 1544.1,
+    "control_excess_p95_adu": 19230.5,
+    "control_excess_p99_adu": 29753.8,
+    "centre_percentile_vs_controls": 89.5,
+    "n_controls": 400
+   }
+  }
+ },
+ "validation": {
+  "time_clusters": [
+   {
+    "n_frames": 16,
+    "radii": {
+     "3": {
+      "centre_excess_adu": 659.1,
+      "centre_snr": 1.27,
+      "control_excess_median_adu": 80.8,
+      "control_excess_p95_adu": 1213.8,
+      "control_excess_p99_adu": 2154.9,
+      "centre_percentile_vs_controls": 83.8,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": 2933.3,
+      "centre_snr": 3.65,
+      "control_excess_median_adu": 226.1,
+      "control_excess_p95_adu": 2753.5,
+      "control_excess_p99_adu": 4716.9,
+      "centre_percentile_vs_controls": 95.5,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": 11656.3,
+      "centre_snr": 11.0,
+      "control_excess_median_adu": 789.6,
+      "control_excess_p95_adu": 5345.1,
+      "control_excess_p99_adu": 10464.5,
+      "centre_percentile_vs_controls": 99.5,
+      "n_controls": 400
+     }
+    }
+   },
+   {
+    "n_frames": 24,
+    "radii": {
+     "3": {
+      "centre_excess_adu": 1191.7,
+      "centre_snr": 2.58,
+      "control_excess_median_adu": 122.9,
+      "control_excess_p95_adu": 1431.1,
+      "control_excess_p99_adu": 1910.8,
+      "centre_percentile_vs_controls": 91.0,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": 3736.6,
+      "centre_snr": 4.76,
+      "control_excess_median_adu": 246.3,
+      "control_excess_p95_adu": 3089.0,
+      "control_excess_p99_adu": 5333.7,
+      "centre_percentile_vs_controls": 96.2,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": 12562.5,
+      "centre_snr": 11.08,
+      "control_excess_median_adu": 562.6,
+      "control_excess_p95_adu": 6193.5,
+      "control_excess_p99_adu": 10020.7,
+      "centre_percentile_vs_controls": 100.0,
+      "n_controls": 400
+     }
+    }
+   }
+  ],
+  "split_halves": [
+   {
+    "half": "even",
+    "n_frames": 20,
+    "radii": {
+     "3": {
+      "centre_excess_adu": 870.5,
+      "centre_snr": 1.77,
+      "control_excess_median_adu": 95.7,
+      "control_excess_p95_adu": 1273.1,
+      "control_excess_p99_adu": 1943.6,
+      "centre_percentile_vs_controls": 84.8,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": 3627.9,
+      "centre_snr": 4.58,
+      "control_excess_median_adu": 276.5,
+      "control_excess_p95_adu": 3064.4,
+      "control_excess_p99_adu": 4475.3,
+      "centre_percentile_vs_controls": 97.8,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": 12654.1,
+      "centre_snr": 11.45,
+      "control_excess_median_adu": 717.8,
+      "control_excess_p95_adu": 5353.1,
+      "control_excess_p99_adu": 7872.2,
+      "centre_percentile_vs_controls": 100.0,
+      "n_controls": 400
+     }
+    }
+   },
+   {
+    "half": "odd",
+    "n_frames": 20,
+    "radii": {
+     "3": {
+      "centre_excess_adu": 810.0,
+      "centre_snr": 1.56,
+      "control_excess_median_adu": 95.7,
+      "control_excess_p95_adu": 1278.2,
+      "control_excess_p99_adu": 1903.4,
+      "centre_percentile_vs_controls": 86.5,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": 2939.1,
+      "centre_snr": 3.49,
+      "control_excess_median_adu": 255.2,
+      "control_excess_p95_adu": 2854.4,
+      "control_excess_p99_adu": 4505.1,
+      "centre_percentile_vs_controls": 95.2,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": 11430.9,
+      "centre_snr": 10.18,
+      "control_excess_median_adu": 622.2,
+      "control_excess_p95_adu": 5110.5,
+      "control_excess_p99_adu": 7930.6,
+      "centre_percentile_vs_controls": 100.0,
+      "n_controls": 400
+     }
+    }
+   }
+  ],
+  "offset_ephemeris_stacks": [
+   {
+    "offset": "+90 arcsec RA",
+    "n_frames": 40,
+    "radii": {
+     "3": {
+      "centre_excess_adu": 474.6,
+      "centre_snr": 2.66,
+      "control_excess_median_adu": 54.5,
+      "control_excess_p95_adu": 1414.9,
+      "control_excess_p99_adu": 7256.8,
+      "centre_percentile_vs_controls": 77.5,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": 838.5,
+      "centre_snr": 2.62,
+      "control_excess_median_adu": 160.3,
+      "control_excess_p95_adu": 3061.8,
+      "control_excess_p99_adu": 6683.8,
+      "centre_percentile_vs_controls": 66.8,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": -1245.8,
+      "centre_snr": -2.52,
+      "control_excess_median_adu": 693.8,
+      "control_excess_p95_adu": 5396.5,
+      "control_excess_p99_adu": 16926.0,
+      "centre_percentile_vs_controls": 25.5,
+      "n_controls": 400
+     }
+    }
+   },
+   {
+    "offset": "-90 arcsec RA",
+    "n_frames": 40,
+    "radii": {
+     "3": {
+      "centre_excess_adu": -572.6,
+      "centre_snr": -1.86,
+      "control_excess_median_adu": -22.3,
+      "control_excess_p95_adu": 1130.1,
+      "control_excess_p99_adu": 1891.2,
+      "centre_percentile_vs_controls": 16.8,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": -1526.4,
+      "centre_snr": -2.69,
+      "control_excess_median_adu": 173.8,
+      "control_excess_p95_adu": 2505.2,
+      "control_excess_p99_adu": 4450.9,
+      "centre_percentile_vs_controls": 10.8,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": 27.4,
+      "centre_snr": 0.03,
+      "control_excess_median_adu": 701.2,
+      "control_excess_p95_adu": 5570.2,
+      "control_excess_p99_adu": 10624.5,
+      "centre_percentile_vs_controls": 40.5,
+      "n_controls": 400
+     }
+    }
+   },
+   {
+    "offset": "+90 arcsec Dec",
+    "n_frames": 40,
+    "radii": {
+     "3": {
+      "centre_excess_adu": 284.1,
+      "centre_snr": 1.63,
+      "control_excess_median_adu": 52.0,
+      "control_excess_p95_adu": 1352.4,
+      "control_excess_p99_adu": 2548.1,
+      "centre_percentile_vs_controls": 65.5,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": 1006.5,
+      "centre_snr": 3.26,
+      "control_excess_median_adu": 156.8,
+      "control_excess_p95_adu": 2662.8,
+      "control_excess_p99_adu": 6433.9,
+      "centre_percentile_vs_controls": 72.0,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": 1245.9,
+      "centre_snr": 2.57,
+      "control_excess_median_adu": 583.0,
+      "control_excess_p95_adu": 6203.4,
+      "control_excess_p99_adu": 18229.9,
+      "centre_percentile_vs_controls": 58.5,
+      "n_controls": 400
+     }
+    }
+   },
+   {
+    "offset": "-90 arcsec Dec",
+    "n_frames": 40,
+    "radii": {
+     "3": {
+      "centre_excess_adu": -613.5,
+      "centre_snr": -3.29,
+      "control_excess_median_adu": 39.4,
+      "control_excess_p95_adu": 1213.1,
+      "control_excess_p99_adu": 1742.7,
+      "centre_percentile_vs_controls": 12.0,
+      "n_controls": 400
+     },
+     "5": {
+      "centre_excess_adu": -1226.5,
+      "centre_snr": -3.39,
+      "control_excess_median_adu": 265.9,
+      "control_excess_p95_adu": 3042.6,
+      "control_excess_p99_adu": 10656.4,
+      "centre_percentile_vs_controls": 13.8,
+      "n_controls": 400
+     },
+     "8": {
+      "centre_excess_adu": -2256.5,
+      "centre_snr": -3.37,
+      "control_excess_median_adu": 733.3,
+      "control_excess_p95_adu": 5804.1,
+      "control_excess_p99_adu": 10805.1,
+      "centre_percentile_vs_controls": 18.8,
+      "n_controls": 400
+     }
+    }
+   }
+  ],
+  "morphology_median_stack": {
+   "radial_profile_mean_adu_per_px": {
+    "0-3px": 138.3,
+    "3-5px": 149.9,
+    "5-8px": 141.2,
+    "8-12px": 160.1,
+    "12-16px": 183.0,
+    "16-24px": 90.3,
+    "24-32px": 38.1
+   },
+   "reference_background_16-24px_adu_per_px": 58.1,
+   "excess_centroid_within_r20_px": [
+    89.8,
+    98.6
+   ],
+   "centroid_offset_from_centre_px": 10.3,
+   "note": "flux is extended (elevated to ~16 px), consistent with a diffuse coma seen through the ~6 px PSF step 08 measured in this product. The excess centroid sits ~10 px (~30 arcsec) west of the nucleus (ephemeris) position - the bright inner coma/photocentre of a tailed comet need not coincide with the nucleus, and star-streak remnants cross the field - while the aperture excess is measured at, and is specific to, the ephemeris position (see offset stacks). A fixed field star cannot explain it: the comet moved >1 deg between the two time-clusters, yet the excess appears at the comet's position in both."
+  }
+ },
+ "verdict": "DETECTED (extended source): in the median stack of 40 calibrated NEOSSat frames (600 s total), the PSF-matched r=8 px aperture at the JPL Horizons position has excess 12707.1 ADU, SNR 12.42, above all 400 control positions. The excess appears independently in both time-clusters and both split halves at the same strength, and vanishes in stacks built on +/-90 arcsec offset ephemerides. Caveats, reported in full: the r=3 px core aperture alone is NOT significant (SNR 1.81, 88.0th percentile) - the flux is extended, as expected for a diffuse comet through this product's ~6 px PSF - and the mean-stack variant shows the same excess (9782.5 ADU, SNR 6.05) but against an artifact-dominated control distribution (89.5th percentile).",
+ "frames": [
+  {
+   "observationID": "2025347100934",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347100934_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:09:41.556",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.11599,
+   "predicted_dec_deg": 4.82937,
+   "predicted_pixel_xy": [
+    502.6,
+    517.4
+   ]
+  },
+  {
+   "observationID": "2025347101114",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347101114_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:11:21.531",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.11472,
+   "predicted_dec_deg": 4.82981,
+   "predicted_pixel_xy": [
+    501.4,
+    517.7
+   ]
+  },
+  {
+   "observationID": "2025347101254",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347101254_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:13:01.555",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.11346,
+   "predicted_dec_deg": 4.83026,
+   "predicted_pixel_xy": [
+    500.0,
+    518.2
+   ]
+  },
+  {
+   "observationID": "2025347101434",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347101434_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:14:41.579",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.11219,
+   "predicted_dec_deg": 4.8307,
+   "predicted_pixel_xy": [
+    498.7,
+    519.7
+   ]
+  },
+  {
+   "observationID": "2025347101614",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347101614_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:16:21.603",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.11093,
+   "predicted_dec_deg": 4.83114,
+   "predicted_pixel_xy": [
+    497.3,
+    520.3
+   ]
+  },
+  {
+   "observationID": "2025347101754",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347101754_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:18:01.627",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.10966,
+   "predicted_dec_deg": 4.83158,
+   "predicted_pixel_xy": [
+    496.0,
+    520.6
+   ]
+  },
+  {
+   "observationID": "2025347101934",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347101934_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:19:41.651",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.1084,
+   "predicted_dec_deg": 4.83203,
+   "predicted_pixel_xy": [
+    494.1,
+    522.5
+   ]
+  },
+  {
+   "observationID": "2025347102114",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347102114_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:21:21.675",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.10713,
+   "predicted_dec_deg": 4.83247,
+   "predicted_pixel_xy": [
+    493.1,
+    523.6
+   ]
+  },
+  {
+   "observationID": "2025347102254",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347102254_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:23:01.699",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.10587,
+   "predicted_dec_deg": 4.83291,
+   "predicted_pixel_xy": [
+    492.1,
+    524.1
+   ]
+  },
+  {
+   "observationID": "2025347102434",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347102434_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:24:41.723",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.1046,
+   "predicted_dec_deg": 4.83335,
+   "predicted_pixel_xy": [
+    498.4,
+    524.5
+   ]
+  },
+  {
+   "observationID": "2025347102614",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347102614_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:26:21.747",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.10334,
+   "predicted_dec_deg": 4.8338,
+   "predicted_pixel_xy": [
+    488.5,
+    525.7
+   ]
+  },
+  {
+   "observationID": "2025347102754",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347102754_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:28:01.770",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.10207,
+   "predicted_dec_deg": 4.83424,
+   "predicted_pixel_xy": [
+    487.9,
+    526.3
+   ]
+  },
+  {
+   "observationID": "2025347102934",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347102934_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:29:41.794",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.10081,
+   "predicted_dec_deg": 4.83468,
+   "predicted_pixel_xy": [
+    486.2,
+    526.8
+   ]
+  },
+  {
+   "observationID": "2025347103114",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347103114_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:31:21.819",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.09954,
+   "predicted_dec_deg": 4.83512,
+   "predicted_pixel_xy": [
+    484.7,
+    528.0
+   ]
+  },
+  {
+   "observationID": "2025347103254",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347103254_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:33:01.843",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 168.09827,
+   "predicted_dec_deg": 4.83557,
+   "predicted_pixel_xy": [
+    483.2,
+    528.7
+   ]
+  },
+  {
+   "observationID": "2025347103434",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025347103434_cor.fits",
+   "mid_exposure_utc": "2025-12-13T10:34:41.866",
+   "exposure_s": 15.0038,
+   "predicted_ra_deg": 168.09701,
+   "predicted_dec_deg": 4.83601,
+   "predicted_pixel_xy": [
+    482.5,
+    529.2
+   ]
+  },
+  {
+   "observationID": "2025348075539",
+   "used_in_stack": false,
+   "product": "raw FITS only (calibrationLevel 1, no _cor product)",
+   "exclusion_reason": "no calibrated _cor product in the archive; excluded from the stack so raw and calibrated frames are not mixed",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348075539.fits"
+  },
+  {
+   "observationID": "2025348075719",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348075719_cor.fits",
+   "mid_exposure_utc": "2025-12-14T07:57:26.531",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.11748,
+   "predicted_dec_deg": 5.17788,
+   "predicted_pixel_xy": [
+    500.0,
+    518.1
+   ]
+  },
+  {
+   "observationID": "2025348075859",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348075859_cor.fits",
+   "mid_exposure_utc": "2025-12-14T07:59:06.555",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.1162,
+   "predicted_dec_deg": 5.17833,
+   "predicted_pixel_xy": [
+    498.7,
+    518.8
+   ]
+  },
+  {
+   "observationID": "2025348080039",
+   "used_in_stack": false,
+   "product": "raw FITS only (calibrationLevel 1, no _cor product)",
+   "exclusion_reason": "no calibrated _cor product in the archive; excluded from the stack so raw and calibrated frames are not mixed",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348080039.fits"
+  },
+  {
+   "observationID": "2025348080219",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348080219_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:02:26.603",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.11364,
+   "predicted_dec_deg": 5.17922,
+   "predicted_pixel_xy": [
+    495.7,
+    520.7
+   ]
+  },
+  {
+   "observationID": "2025348080359",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348080359_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:04:06.627",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.11236,
+   "predicted_dec_deg": 5.17966,
+   "predicted_pixel_xy": [
+    493.8,
+    521.3
+   ]
+  },
+  {
+   "observationID": "2025348080539",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348080539_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:05:46.651",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.11107,
+   "predicted_dec_deg": 5.18011,
+   "predicted_pixel_xy": [
+    493.2,
+    522.8
+   ]
+  },
+  {
+   "observationID": "2025348080719",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348080719_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:07:26.675",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10979,
+   "predicted_dec_deg": 5.18056,
+   "predicted_pixel_xy": [
+    491.5,
+    523.7
+   ]
+  },
+  {
+   "observationID": "2025348080859",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348080859_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:09:06.699",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10851,
+   "predicted_dec_deg": 5.181,
+   "predicted_pixel_xy": [
+    490.5,
+    524.7
+   ]
+  },
+  {
+   "observationID": "2025348081039",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348081039_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:10:46.723",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10723,
+   "predicted_dec_deg": 5.18145,
+   "predicted_pixel_xy": [
+    488.9,
+    525.2
+   ]
+  },
+  {
+   "observationID": "2025348081219",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348081219_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:12:26.747",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10595,
+   "predicted_dec_deg": 5.1819,
+   "predicted_pixel_xy": [
+    487.4,
+    526.0
+   ]
+  },
+  {
+   "observationID": "2025348081359",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348081359_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:14:06.771",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10467,
+   "predicted_dec_deg": 5.18234,
+   "predicted_pixel_xy": [
+    486.2,
+    526.8
+   ]
+  },
+  {
+   "observationID": "2025348081539",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348081539_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:15:46.795",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10339,
+   "predicted_dec_deg": 5.18279,
+   "predicted_pixel_xy": [
+    484.6,
+    527.5
+   ]
+  },
+  {
+   "observationID": "2025348081719",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348081719_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:17:26.819",
+   "exposure_s": 15.0039,
+   "predicted_ra_deg": 167.10211,
+   "predicted_dec_deg": 5.18323,
+   "predicted_pixel_xy": [
+    483.3,
+    527.9
+   ]
+  },
+  {
+   "observationID": "2025348081859",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348081859_cor.fits",
+   "mid_exposure_utc": "2025-12-14T08:19:06.843",
+   "exposure_s": 15.0038,
+   "predicted_ra_deg": 167.10083,
+   "predicted_dec_deg": 5.18368,
+   "predicted_pixel_xy": [
+    481.9,
+    528.9
+   ]
+  },
+  {
+   "observationID": "2025348093512",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348093512_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:35:19.556",
+   "exposure_s": 15.0041,
+   "predicted_ra_deg": 167.04226,
+   "predicted_dec_deg": 5.20407,
+   "predicted_pixel_xy": [
+    500.7,
+    517.5
+   ]
+  },
+  {
+   "observationID": "2025348093652",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348093652_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:36:59.531",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.04098,
+   "predicted_dec_deg": 5.20452,
+   "predicted_pixel_xy": [
+    499.2,
+    518.0
+   ]
+  },
+  {
+   "observationID": "2025348093832",
+   "used_in_stack": false,
+   "product": "raw FITS only (calibrationLevel 1, no _cor product)",
+   "exclusion_reason": "no calibrated _cor product in the archive; excluded from the stack so raw and calibrated frames are not mixed",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348093832.fits"
+  },
+  {
+   "observationID": "2025348094332",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348094332_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:43:39.627",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.03586,
+   "predicted_dec_deg": 5.20631,
+   "predicted_pixel_xy": [
+    493.4,
+    521.5
+   ]
+  },
+  {
+   "observationID": "2025348094512",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348094512_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:45:19.651",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.03457,
+   "predicted_dec_deg": 5.20675,
+   "predicted_pixel_xy": [
+    492.3,
+    521.5
+   ]
+  },
+  {
+   "observationID": "2025348094652",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348094652_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:46:59.675",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.03329,
+   "predicted_dec_deg": 5.2072,
+   "predicted_pixel_xy": [
+    490.9,
+    523.9
+   ]
+  },
+  {
+   "observationID": "2025348094832",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348094832_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:48:39.699",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.03201,
+   "predicted_dec_deg": 5.20764,
+   "predicted_pixel_xy": [
+    489.5,
+    524.0
+   ]
+  },
+  {
+   "observationID": "2025348095012",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348095012_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:50:19.723",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.03073,
+   "predicted_dec_deg": 5.20809,
+   "predicted_pixel_xy": [
+    488.1,
+    523.9
+   ]
+  },
+  {
+   "observationID": "2025348095152",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348095152_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:51:59.747",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.02945,
+   "predicted_dec_deg": 5.20854,
+   "predicted_pixel_xy": [
+    486.8,
+    525.5
+   ]
+  },
+  {
+   "observationID": "2025348095332",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348095332_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:53:39.771",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.02817,
+   "predicted_dec_deg": 5.20898,
+   "predicted_pixel_xy": [
+    485.2,
+    526.3
+   ]
+  },
+  {
+   "observationID": "2025348095512",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348095512_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:55:19.795",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.02688,
+   "predicted_dec_deg": 5.20943,
+   "predicted_pixel_xy": [
+    483.9,
+    527.0
+   ]
+  },
+  {
+   "observationID": "2025348095652",
+   "used_in_stack": true,
+   "product": "calibrated _cor.fits (calibrationLevel 2)",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348095652_cor.fits",
+   "mid_exposure_utc": "2025-12-14T09:56:59.819",
+   "exposure_s": 15.004,
+   "predicted_ra_deg": 167.0256,
+   "predicted_dec_deg": 5.20988,
+   "predicted_pixel_xy": [
+    482.8,
+    528.1
+   ]
+  },
+  {
+   "observationID": "2025348095832",
+   "used_in_stack": false,
+   "product": "raw FITS only (calibrationLevel 1, no _cor product)",
+   "exclusion_reason": "no calibrated _cor product in the archive; excluded from the stack so raw and calibrated frames are not mixed",
+   "download": "cached",
+   "local_file": "/home/hatch/workspace/nasa-spherex/work/neossat_stack/NEOS_SCI_2025348095832.fits"
+  }
+ ]
+}
