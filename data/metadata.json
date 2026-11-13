@@ -1,0 +1,89 @@
+{
+  "target": "Comet 3I/ATLAS (interstellar comet) in SPHEREx QR2 level-2 spectral images",
+  "field_center_ra_deg": 167.1309,
+  "field_center_dec_deg": 5.1732,
+  "field_center_note": "Comet's predicted position at the middle epoch (epoch 3, 2025-12-14T07:39:58Z); all cutouts requested with identical center/size so field stars register across epochs",
+  "field_size_deg": 0.5,
+  "native_grid_px": [
+    294,
+    293
+  ],
+  "native_pixel_scale_arcsec_per_px": [
+    6.128,
+    6.146
+  ],
+  "image_dimensions_px": [
+    900,
+    900
+  ],
+  "pixel_coordinate_convention": "PNG pixel coordinates, origin at TOP-LEFT corner, x increasing right, y increasing down, in the delivered 900x900 PNGs",
+  "orientation": "North up, east to the left (standard sky orientation). The IRSA cutout arrays are already display-oriented (RA decreases with column, Dec decreases with row), so no flip was applied; reprojection preserved this.",
+  "processing": "IRSA cutout service (?center=&size=) on QR2 level-2 files -> IMAGE extension (full detector band: D2 1.103-1.650 um for epochs 1-3, D3 1.630-2.435 um for epochs 4-5) -> reprojected onto epoch-3 WCS grid (293x294) with reproject_interp -> per-image median background subtracted -> shared asinh stretch (scale = 99.9th percentile of all epochs) -> subtle blue tint (R,G,B = 0.80,0.89,1.00 x intensity) -> bilinear resize to 900x900",
+  "epochs": [
+    {
+      "file": "epoch1.png",
+      "obs_id": "2025W50_2A_0685_1",
+      "detector": "D2",
+      "band_um": "1.103-1.650",
+      "observation_datetime_utc": "2025-12-14T04:26:46Z",
+      "comet_ra_deg": 167.2791,
+      "comet_dec_deg": 5.1216,
+      "comet_pixel_x": 168.3,
+      "comet_pixel_y": 470.0,
+      "source_access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0685_1D2_spx_l2b-v20-2025-349.fits?center=167.1309,5.1732d&size=0.5",
+      "aperture_check": "aperture r=3px excess=70.5 MJy/sr*px over local bg 0.646 MJy/sr (annulus robust std 0.123); aperture SNR ~106; peak pixel in aperture 8.30 MJy/sr"
+    },
+    {
+      "file": "epoch2.png",
+      "obs_id": "2025W50_2A_0698_1",
+      "detector": "D2",
+      "band_um": "1.103-1.650",
+      "observation_datetime_utc": "2025-12-14T06:01:11Z",
+      "comet_ra_deg": 167.2067,
+      "comet_dec_deg": 5.1468,
+      "comet_pixel_x": 305.4,
+      "comet_pixel_y": 459.8,
+      "source_access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0698_1D2_spx_l2b-v20-2025-349.fits?center=167.1309,5.1732d&size=0.5",
+      "aperture_check": "aperture r=3px excess=66.5 MJy/sr*px over local bg 0.626 MJy/sr (annulus robust std 0.127); aperture SNR ~98; peak pixel in aperture 7.63 MJy/sr"
+    },
+    {
+      "file": "epoch3.png",
+      "obs_id": "2025W50_2A_0712_1",
+      "detector": "D2",
+      "band_um": "1.103-1.650",
+      "observation_datetime_utc": "2025-12-14T07:39:58Z",
+      "comet_ra_deg": 167.1309,
+      "comet_dec_deg": 5.1732,
+      "comet_pixel_x": 449.0,
+      "comet_pixel_y": 449.0,
+      "source_access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0712_1D2_spx_l2b-v20-2025-349.fits?center=167.1309,5.1732d&size=0.5",
+      "aperture_check": "aperture r=3px excess=66.3 MJy/sr*px over local bg 0.651 MJy/sr (annulus robust std 0.108); aperture SNR ~114; peak pixel in aperture 9.57 MJy/sr"
+    },
+    {
+      "file": "epoch4.png",
+      "obs_id": "2025W50_2A_0741_1",
+      "detector": "D3",
+      "band_um": "1.630-2.435",
+      "observation_datetime_utc": "2025-12-14T10:58:39Z",
+      "comet_ra_deg": 166.9781,
+      "comet_dec_deg": 5.2264,
+      "comet_pixel_x": 738.3,
+      "comet_pixel_y": 427.1,
+      "source_access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/3/level2_2025W50_2A_0741_1D3_spx_l2b-v20-2025-349.fits?center=167.1309,5.1732d&size=0.5",
+      "aperture_check": "aperture r=3px excess=57.5 MJy/sr*px over local bg 0.541 MJy/sr (annulus robust std 0.092); aperture SNR ~116; peak pixel in aperture 6.14 MJy/sr"
+    },
+    {
+      "file": "epoch5.png",
+      "obs_id": "2025W50_2A_0755_1",
+      "detector": "D3",
+      "band_um": "1.630-2.435",
+      "observation_datetime_utc": "2025-12-14T12:36:36Z",
+      "comet_ra_deg": 166.9028,
+      "comet_dec_deg": 5.2526,
+      "comet_pixel_x": 880.9,
+      "comet_pixel_y": 416.2,
+      "source_access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/3/level2_2025W50_2A_0755_1D3_spx_l2b-v20-2025-349.fits?center=167.1309,5.1732d&size=0.5",
+      "aperture_check": "aperture r=3px excess=46.2 MJy/sr*px over local bg 0.494 MJy/sr (annulus robust std 0.095); aperture SNR ~92; peak pixel in aperture 5.63 MJy/sr"
+    }
+  ]
+}

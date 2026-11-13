@@ -1,0 +1,465 @@
+{
+  "status": "no_spectral_axis_in_IMAGE_extension",
+  "finding": "IMAGE extension of every cutout is a single 2D plane (293x294 for D2 epochs 1-3; 290x292 for D3 epochs 4-5). There is NO spectral cube axis. SPHEREx L2 spectral images are LVF images: each spatial pixel samples ONE wavelength, given per-pixel by the WCS-WAVE lookup table (WAVE-TAB WCS; axes = Wavelength, Bandwidth). A multi-wavelength spectrum of a point source therefore cannot be extracted from a single cutout; building one would require many exposures with the source at different detector positions (spectral mapping), which a single-epoch cutout does not contain. No spectral points are fabricated.",
+  "what_is_provided_instead": "Band-integrated (full-detector-band image) aperture photometry per epoch for the comet and 3 field stars, using the identical method to Phase 1 (aperture r=3 native px, annulus 6-10 px, local median background; flux = sum of background-subtracted pixels). Units of flux_sum: MJy/sr * pixel (sum over aperture pixels of MJy/sr values). Also given per epoch: the real effective wavelength the LVF sampled at the object's position (mean of the reprojected WCS-WAVE wavelength map inside the aperture) - one wavelength sample per epoch, NOT a spectrum.",
+  "wavelength_mapping": "WCS-WAVE BinTable (X,Y grid over the full 2040x2040 detector + VALUES[2,ny,nx]: [wavelength_um, bandwidth_um]); IMAGE header CTYPE1W/CTYPE2W = WAVE-TAB with PS1_0W/PS2_0W = WCS-WAVE. Wavelength varies smoothly across the detector (LVF gradient); across each 0.5-deg cutout it spans roughly 0.15-0.25 um. NCHANNEL=32, WCHANNEL=64 in header; PSF extension is (121,101,101).",
+  "photometry": {
+    "comet_3I_ATLAS": {
+      "positions_native_xy": [
+        [
+          54.978,
+          153.01111111111112
+        ],
+        [
+          99.764,
+          149.69044444444444
+        ],
+        [
+          146.67333333333335,
+          146.17444444444445
+        ],
+        [
+          241.17799999999997,
+          139.04477777777777
+        ],
+        [
+          287.7606666666667,
+          135.4962222222222
+        ]
+      ],
+      "positions_png900_xy": [
+        [
+          168.29999999999998,
+          470.0
+        ],
+        [
+          305.4,
+          459.79999999999995
+        ],
+        [
+          449.0,
+          449.0
+        ],
+        [
+          738.2999999999998,
+          427.09999999999997
+        ],
+        [
+          880.9,
+          416.19999999999993
+        ]
+      ],
+      "epochs": [
+        {
+          "flux_sum": 66.83390230235268,
+          "local_bg": 0.6491237798861118,
+          "annulus_std": 0.1275732835104517,
+          "aperture_snr": 100.8219757393932,
+          "n_ap_pix": 27,
+          "epoch": 1,
+          "datetime_utc": "2025-12-14T04:26:46Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.2133056383699736
+        },
+        {
+          "flux_sum": 66.3981017887852,
+          "local_bg": 0.6202980624678456,
+          "annulus_std": 0.12296535626953305,
+          "aperture_snr": 100.2706643565243,
+          "n_ap_pix": 29,
+          "epoch": 2,
+          "datetime_utc": "2025-12-14T06:01:11Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.333506619477968
+        },
+        {
+          "flux_sum": 66.07134661857148,
+          "local_bg": 0.6513975862835352,
+          "annulus_std": 0.10981870896538024,
+          "aperture_snr": 111.72177463875144,
+          "n_ap_pix": 29,
+          "epoch": 3,
+          "datetime_utc": "2025-12-14T07:39:58Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.4667789234706208
+        },
+        {
+          "flux_sum": 55.846622153954364,
+          "local_bg": 0.5396239355905385,
+          "annulus_std": 0.0901763068767968,
+          "aperture_snr": 117.03761133511274,
+          "n_ap_pix": 28,
+          "epoch": 4,
+          "datetime_utc": "2025-12-14T10:58:39Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.6650860045940827
+        },
+        {
+          "flux_sum": 45.959233728830235,
+          "local_bg": 0.4935366877275981,
+          "annulus_std": 0.09420592269105478,
+          "aperture_snr": 92.19673806068809,
+          "n_ap_pix": 28,
+          "epoch": 5,
+          "datetime_utc": "2025-12-14T12:36:36Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.8270649022729366
+        }
+      ]
+    },
+    "field_star_1": {
+      "positions_native_xy": [
+        [
+          61.0,
+          107.0
+        ],
+        [
+          61.0,
+          107.0
+        ],
+        [
+          61.0,
+          107.0
+        ],
+        [
+          61.0,
+          107.0
+        ],
+        [
+          61.0,
+          107.0
+        ]
+      ],
+      "positions_png900_xy": [
+        [
+          186.73469387755102,
+          328.6689419795222
+        ],
+        [
+          186.73469387755102,
+          328.6689419795222
+        ],
+        [
+          186.73469387755102,
+          328.6689419795222
+        ],
+        [
+          186.73469387755102,
+          328.6689419795222
+        ],
+        [
+          186.73469387755102,
+          328.6689419795222
+        ]
+      ],
+      "epochs": [
+        {
+          "flux_sum": 1779.6550093482997,
+          "local_bg": 0.48490802745248385,
+          "annulus_std": 0.05544084728083223,
+          "aperture_snr": 5960.833122290193,
+          "n_ap_pix": 29,
+          "epoch": 1,
+          "datetime_utc": "2025-12-14T04:26:46Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.224783763955124
+        },
+        {
+          "flux_sum": 1847.9258938011635,
+          "local_bg": 0.48902724162640154,
+          "annulus_std": 0.0534010319811877,
+          "aperture_snr": 6425.928695468364,
+          "n_ap_pix": 29,
+          "epoch": 2,
+          "datetime_utc": "2025-12-14T06:01:11Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.345495315689008
+        },
+        {
+          "flux_sum": 1849.763009378104,
+          "local_bg": 0.5203232168116241,
+          "annulus_std": 0.05463344222961657,
+          "aperture_snr": 6287.21811322484,
+          "n_ap_pix": 29,
+          "epoch": 3,
+          "datetime_utc": "2025-12-14T07:39:58Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.4794194153007816
+        },
+        {
+          "flux_sum": 1745.1816244380673,
+          "local_bg": 0.4349137169046835,
+          "annulus_std": 0.04583373590319389,
+          "aperture_snr": 7070.60172042011,
+          "n_ap_pix": 29,
+          "epoch": 4,
+          "datetime_utc": "2025-12-14T10:58:39Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.677598395320728
+        },
+        {
+          "flux_sum": 1590.9990836333577,
+          "local_bg": 0.38494687846950415,
+          "annulus_std": 0.04524369013569829,
+          "aperture_snr": 6529.995939512598,
+          "n_ap_pix": 29,
+          "epoch": 5,
+          "datetime_utc": "2025-12-14T12:36:36Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.8407180959999363
+        }
+      ]
+    },
+    "field_star_2": {
+      "positions_native_xy": [
+        [
+          71.0,
+          63.0
+        ],
+        [
+          71.0,
+          63.0
+        ],
+        [
+          71.0,
+          63.0
+        ],
+        [
+          71.0,
+          63.0
+        ],
+        [
+          71.0,
+          63.0
+        ]
+      ],
+      "positions_png900_xy": [
+        [
+          217.34693877551018,
+          193.51535836177473
+        ],
+        [
+          217.34693877551018,
+          193.51535836177473
+        ],
+        [
+          217.34693877551018,
+          193.51535836177473
+        ],
+        [
+          217.34693877551018,
+          193.51535836177473
+        ],
+        [
+          217.34693877551018,
+          193.51535836177473
+        ]
+      ],
+      "epochs": [
+        {
+          "flux_sum": 1085.5631469216244,
+          "local_bg": 0.44442792428139605,
+          "annulus_std": 0.028038287800257102,
+          "aperture_snr": 7189.597921107979,
+          "n_ap_pix": 29,
+          "epoch": 1,
+          "datetime_utc": "2025-12-14T04:26:46Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.235901051526868
+        },
+        {
+          "flux_sum": 979.1353364760081,
+          "local_bg": 0.43030875049191825,
+          "annulus_std": 0.026239309726932055,
+          "aperture_snr": 6929.331195073041,
+          "n_ap_pix": 29,
+          "epoch": 2,
+          "datetime_utc": "2025-12-14T06:01:11Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.357726986576081
+        },
+        {
+          "flux_sum": 921.8012949160981,
+          "local_bg": 0.43687798068967126,
+          "annulus_std": 0.029899495895072646,
+          "aperture_snr": 5724.986260376992,
+          "n_ap_pix": 29,
+          "epoch": 3,
+          "datetime_utc": "2025-12-14T07:39:58Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.4929824872172432
+        },
+        {
+          "flux_sum": 781.3627504216149,
+          "local_bg": 0.38171537043155923,
+          "annulus_std": 0.021454989466150248,
+          "aperture_snr": 6762.782168101815,
+          "n_ap_pix": 29,
+          "epoch": 4,
+          "datetime_utc": "2025-12-14T10:58:39Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.6920981330608194
+        },
+        {
+          "flux_sum": 669.1991290477026,
+          "local_bg": 0.335241743304623,
+          "annulus_std": 0.017727760949718264,
+          "aperture_snr": 7009.74922488881,
+          "n_ap_pix": 29,
+          "epoch": 5,
+          "datetime_utc": "2025-12-14T12:36:36Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.8568176468215942
+        }
+      ]
+    },
+    "field_star_3": {
+      "positions_native_xy": [
+        [
+          171.0,
+          16.0
+        ],
+        [
+          171.0,
+          16.0
+        ],
+        [
+          171.0,
+          16.0
+        ],
+        [
+          171.0,
+          16.0
+        ],
+        [
+          171.0,
+          16.0
+        ]
+      ],
+      "positions_png900_xy": [
+        [
+          523.469387755102,
+          49.14675767918089
+        ],
+        [
+          523.469387755102,
+          49.14675767918089
+        ],
+        [
+          523.469387755102,
+          49.14675767918089
+        ],
+        [
+          523.469387755102,
+          49.14675767918089
+        ],
+        [
+          523.469387755102,
+          49.14675767918089
+        ]
+      ],
+      "epochs": [
+        {
+          "flux_sum": 460.03612724690373,
+          "local_bg": 0.4130201626169339,
+          "annulus_std": 0.02187951400629896,
+          "aperture_snr": 3904.4086718828094,
+          "n_ap_pix": 29,
+          "epoch": 1,
+          "datetime_utc": "2025-12-14T04:26:46Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.2478806618040754
+        },
+        {
+          "flux_sum": 442.602354187891,
+          "local_bg": 0.4077409020813695,
+          "annulus_std": 0.018289854482636075,
+          "aperture_snr": 4493.704086979372,
+          "n_ap_pix": 29,
+          "epoch": 2,
+          "datetime_utc": "2025-12-14T06:01:11Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.3703887389681952
+        },
+        {
+          "flux_sum": 432.7662917824824,
+          "local_bg": 0.40671119112691956,
+          "annulus_std": 0.030651566967287318,
+          "aperture_snr": 2621.8132009349906,
+          "n_ap_pix": 29,
+          "epoch": 3,
+          "datetime_utc": "2025-12-14T07:39:58Z",
+          "detector": "D2",
+          "band_um_header": "1.103-1.650",
+          "effective_wavelength_um_at_object": 1.506893820907189
+        },
+        {
+          "flux_sum": 353.32655373473426,
+          "local_bg": 0.3596075265119614,
+          "annulus_std": 0.019197267726010585,
+          "aperture_snr": 3417.730836446407,
+          "n_ap_pix": 29,
+          "epoch": 4,
+          "datetime_utc": "2025-12-14T10:58:39Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.7071301441222053
+        },
+        {
+          "flux_sum": 329.09022138489945,
+          "local_bg": 0.3200837235542955,
+          "annulus_std": 0.01448125052817414,
+          "aperture_snr": 4219.975328231191,
+          "n_ap_pix": 29,
+          "epoch": 5,
+          "datetime_utc": "2025-12-14T12:36:36Z",
+          "detector": "D3",
+          "band_um_header": "1.630-2.435",
+          "effective_wavelength_um_at_object": 1.8727504872462644
+        }
+      ]
+    }
+  },
+  "d2_vs_d3_contrast": "Epochs 1-3 (D2, header band 1.103-1.650 um) vs epochs 4-5 (D3, 1.630-2.435 um): the comet's aperture flux and the stars' fluxes are listed per epoch above; cross-detector comparisons mix bandpass change with time variability and must not be read as pure fading/brightening. Within-D2 epochs 1-3 and within-D3 epochs 4-5 are directly comparable.",
+  "photometry_method_note": "Aperture SNR = excess / (annulus MAD-std * sqrt(N_ap)). NOTE: images were reprojected (reproject_interp), which correlates neighbouring-pixel noise, so formal aperture SNRs are optimistic upper estimates; they reproduce Phase 1's independent checks for the comet (~92-117) and are given for relative comparison. Bright-star SNRs in the thousands reflect the very smooth local background of the reprojected images, not photon statistics.",
+  "comet_flux_trend_note": "Comet aperture flux (MJy/sr*px): 66.8, 66.4, 66.1 (D2, epochs 1-3, flat within ~1%), then 55.9, 46.0 (D3, epochs 4-5). The D2->D3 step mixes bandpass change with any real fading and must not be quoted as pure fading. Simultaneously the LVF effective wavelength sampled at the comet rose monotonically 1.213 -> 1.827 um across the 5 epochs because the comet moved across the detectors' wavelength gradient.",
+  "image_extension_shape_per_file_(rows,cols)": {
+    "cut_e1.fits": [
+      293,
+      294
+    ],
+    "cut_e2.fits": [
+      293,
+      293
+    ],
+    "cut_e3.fits": [
+      293,
+      294
+    ],
+    "cut_e4.fits": [
+      290,
+      292
+    ],
+    "cut_e5.fits": [
+      292,
+      292
+    ]
+  }
+}

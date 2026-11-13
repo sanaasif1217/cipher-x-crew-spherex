@@ -1,0 +1,284 @@
+{
+ "service": "CADC (Canadian Astronomy Data Centre) TAP service \"argus\" (ivo://cadc.nrc.ca/argus), CAOM-2 schema, sync endpoint",
+ "endpoint": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/argus/sync",
+ "query_date_utc": "2026-11-13",
+ "field": {
+  "centre_ra_deg": 167.1309,
+  "centre_dec_deg": 5.1732,
+  "overlap_circle_radius_deg": 0.5
+ },
+ "method_notes": [
+  "Endpoint discovery: the legacy https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/tap/sync returns HTTP 404 (retired). The current service was resolved from the CADC registry with astroquery.cadc (ivo://cadc.nrc.ca/argus -> https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/argus/).",
+  "Transport: queries were POSTed with curl -L; Python requests cannot follow CADC's sync->job redirect through this sandbox's egress proxy (ProxyError), and CADC requires FORMAT=votable (votable_plain is rejected).",
+  "Case-sensitivity trap (documented because it flipped the answer): CAOM-2 collection names are case-sensitive. Queries with collection='NEOSSat' return ZERO rows; the real collection is 'NEOSSAT' (773,583 observations). All first-pass NEOSSat zeros below are superseded by the corrected-case queries."
+ ],
+ "queries": [
+  {
+   "label": "schema_probe",
+   "http_status": 200,
+   "n_rows": 4,
+   "adql": "SELECT column_name FROM TAP_SCHEMA.columns WHERE table_name='caom2.Observation' AND (column_name IN ('collection','observationID','target_name','obsID'))",
+   "result": "All four columns exist: collection, obsID, observationID, target_name."
+  },
+  {
+   "label": "neossat_size_WRONG_CASE",
+   "http_status": 200,
+   "n_rows": 1,
+   "adql": "SELECT COUNT(*) AS n FROM caom2.Observation WHERE collection='NEOSSat'",
+   "result": "n = 0 -- artefact of case sensitivity; superseded by neossat_size."
+  },
+  {
+   "label": "neossat_size",
+   "http_status": 200,
+   "n_rows": 1,
+   "adql": "SELECT collection, COUNT(*) AS n FROM caom2.Observation WHERE collection IN ('NEOSSat','NEOSSAT','NEOS','NEOSSat-1','NEOS-SAT','CSA_NEOSSat') GROUP BY collection",
+   "result": "Only 'NEOSSAT' exists: 773,583 observations."
+  },
+  {
+   "label": "neossat_field_overlap_WRONG_CASE",
+   "http_status": 200,
+   "n_rows": 0,
+   "adql": "SELECT TOP 50 ... WHERE o.collection='NEOSSat' AND INTERSECTS(p.position_bounds, CIRCLE('ICRS', 167.1309, 5.1732, 0.5)) = 1",
+   "result": "0 rows -- same case artefact; superseded by neossat_field_overlap_NEOSSAT."
+  },
+  {
+   "label": "neossat_target_atlas_WRONG_CASE",
+   "http_status": null,
+   "adql": "SELECT observationID, target_name, intent FROM caom2.Observation WHERE collection='NEOSSat' AND (UPPER(target_name) LIKE '%ATLAS%' OR UPPER(target_name) LIKE '%3I%' OR UPPER(target_name) LIKE '%C/2025%')",
+   "result": "Client-side timeout at 240 s, no result returned; superseded by neossat_target_3I."
+  },
+  {
+   "label": "neossat_field_overlap_NEOSSAT",
+   "http_status": 200,
+   "adql": "SELECT TOP 15 o.observationID, o.target_name, o.intent, p.dataProductType, p.calibrationLevel, p.time_bounds_lower, p.time_bounds_upper FROM caom2.Observation AS o JOIN caom2.Plane AS p ON o.obsID = p.obsID WHERE o.collection='NEOSSAT' AND INTERSECTS(p.position_bounds, CIRCLE('ICRS', 167.1309, 5.1732, 0.5)) = 1",
+   "result": "Rows returned immediately (TOP 15 cap). Every sampled row has target_name='3I', intent='science', dataProductType='image'. Sample (8 of 15 shown):",
+   "sample": [
+    {
+     "observationID": "2025348075719",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 1,
+     "time_bounds_lower_mjd": 61023.33147024306,
+     "time_bounds_upper_mjd": 61023.331643899306,
+     "time_bounds_lower_utc": "2025-12-14 07:57:19.029",
+     "time_bounds_upper_utc": "2025-12-14 07:57:34.033"
+    },
+    {
+     "observationID": "2025348075859",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 2,
+     "time_bounds_lower_mjd": 61023.33262792824,
+     "time_bounds_upper_mjd": 61023.33280158449,
+     "time_bounds_lower_utc": "2025-12-14 07:58:59.053",
+     "time_bounds_upper_utc": "2025-12-14 07:59:14.057"
+    },
+    {
+     "observationID": "2025348081539",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 1,
+     "time_bounds_lower_mjd": 61023.34420478009,
+     "time_bounds_upper_mjd": 61023.34437843634,
+     "time_bounds_lower_utc": "2025-12-14 08:15:39.293",
+     "time_bounds_upper_utc": "2025-12-14 08:15:54.297"
+    },
+    {
+     "observationID": "2025348081359",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 2,
+     "time_bounds_lower_mjd": 61023.34304709491,
+     "time_bounds_upper_mjd": 61023.34322075116,
+     "time_bounds_lower_utc": "2025-12-14 08:13:59.269",
+     "time_bounds_upper_utc": "2025-12-14 08:14:14.273"
+    },
+    {
+     "observationID": "2025348080359",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 1,
+     "time_bounds_lower_mjd": 61023.3361009838,
+     "time_bounds_upper_mjd": 61023.336274640045,
+     "time_bounds_lower_utc": "2025-12-14 08:03:59.125",
+     "time_bounds_upper_utc": "2025-12-14 08:04:14.129"
+    },
+    {
+     "observationID": "2025348093512",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 1,
+     "time_bounds_lower_mjd": 61023.399445069444,
+     "time_bounds_upper_mjd": 61023.399618728006,
+     "time_bounds_lower_utc": "2025-12-14 09:35:12.054",
+     "time_bounds_upper_utc": "2025-12-14 09:35:27.058"
+    },
+    {
+     "observationID": "2025348094832",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 2,
+     "time_bounds_lower_mjd": 61023.4087059838,
+     "time_bounds_upper_mjd": 61023.4088796412,
+     "time_bounds_lower_utc": "2025-12-14 09:48:32.197",
+     "time_bounds_upper_utc": "2025-12-14 09:48:47.201"
+    },
+    {
+     "observationID": "2025348095652",
+     "target_name": "3I",
+     "intent": "science",
+     "dataProductType": "image",
+     "calibrationLevel": 1,
+     "time_bounds_lower_mjd": 61023.41449440972,
+     "time_bounds_upper_mjd": 61023.414668067126,
+     "time_bounds_lower_utc": "2025-12-14 09:56:52.317",
+     "time_bounds_upper_utc": "2025-12-14 09:57:07.321"
+    }
+   ]
+  },
+  {
+   "label": "neossat_overlap_counts",
+   "http_status": 200,
+   "adql": "SELECT COUNT(*), COUNT(DISTINCT o.observationID), MIN(p.time_bounds_lower), MAX(p.time_bounds_upper) FROM caom2.Observation o JOIN caom2.Plane p ... WHERE o.collection='NEOSSAT' AND INTERSECTS(...) = 1 [and variant with o.target_name='3I']",
+   "result": {
+    "any_target": {
+     "joined_rows": 236,
+     "distinct_observations": 123,
+     "mjd_range": [
+      58034.64583396991,
+      61023.41582575116
+     ],
+     "utc_range": [
+      "2017-10-08 15:30:00.055",
+      "2025-12-14 09:58:47.345"
+     ]
+    },
+    "target_3I": {
+     "joined_rows": 124,
+     "distinct_observations": 44,
+     "mjd_range": [
+      61022.42331081018,
+      61023.41582575116
+     ],
+     "utc_range": [
+      "2025-12-13 10:09:34.054",
+      "2025-12-14 09:58:47.345"
+     ]
+    }
+   }
+  },
+  {
+   "label": "neossat_target_3I",
+   "http_status": 200,
+   "adql": "SELECT COUNT(*), COUNT(DISTINCT observationID) FROM caom2.Observation WHERE collection='NEOSSAT' AND target_name='3I'",
+   "result": "4,417 observations in the NEOSSAT collection carry target_name='3I'. A TOP-20 sample of the ATLAS/3I/C2025 LIKE search returned target_name='3I' rows with intent science and calibration."
+  },
+  {
+   "label": "control_field_overlap_all_collections",
+   "http_status": 200,
+   "n_rows": 18,
+   "adql": "SELECT o.collection, COUNT(*) AS n FROM caom2.Observation o JOIN caom2.Plane p ON o.obsID=p.obsID WHERE INTERSECTS(p.position_bounds, CIRCLE('ICRS', 167.1309, 5.1732, 0.5)) = 1 GROUP BY o.collection",
+   "result": "The spatial method works: 18 collections cover the field, NEOSSAT among them (236 joined rows). Counts are joined observation-plane rows.",
+   "sample": [
+    {
+     "collection": "APASS",
+     "joined_rows": 18
+    },
+    {
+     "collection": "CFHT",
+     "joined_rows": 178
+    },
+    {
+     "collection": "CFHTMEGAPIPE",
+     "joined_rows": 4
+    },
+    {
+     "collection": "DAO",
+     "joined_rows": 15
+    },
+    {
+     "collection": "GEMINI",
+     "joined_rows": 32
+    },
+    {
+     "collection": "HST",
+     "joined_rows": 4
+    },
+    {
+     "collection": "IRIS",
+     "joined_rows": 16
+    },
+    {
+     "collection": "JCMT",
+     "joined_rows": 3
+    },
+    {
+     "collection": "MACHO",
+     "joined_rows": 35
+    },
+    {
+     "collection": "NEOSSAT",
+     "joined_rows": 236
+    },
+    {
+     "collection": "NOAO",
+     "joined_rows": 555
+    },
+    {
+     "collection": "OMM",
+     "joined_rows": 26
+    },
+    {
+     "collection": "RACS",
+     "joined_rows": 4
+    },
+    {
+     "collection": "SDSS",
+     "joined_rows": 582
+    },
+    {
+     "collection": "SUBARU",
+     "joined_rows": 15
+    },
+    {
+     "collection": "SUBARUCADC",
+     "joined_rows": 18
+    },
+    {
+     "collection": "TESS",
+     "joined_rows": 56546
+    },
+    {
+     "collection": "VLASS",
+     "joined_rows": 27
+    }
+   ]
+  }
+ ],
+ "results_summary": {
+  "neossat_collection_name_correct_case": "NEOSSAT",
+  "neossat_collection_total_observations": 773583,
+  "neossat_distinct_obs_overlapping_field_any_target": 123,
+  "neossat_distinct_obs_overlapping_field_target_3I": 44,
+  "neossat_3I_overlap_utc_range": [
+   "2025-12-13 10:09:34.054",
+   "2025-12-14 09:58:47.345"
+  ],
+  "neossat_total_obs_target_3I": 4417,
+  "spherex_epochs_utc_for_reference": [
+   "2025-12-14T04:26:46Z",
+   "2025-12-14T06:01:11Z",
+   "2025-12-14T07:39:58Z",
+   "2025-12-14T10:58:39Z",
+   "2025-12-14T12:36:36Z"
+  ]
+ },
+ "honest_conclusion": "NEOSSat data at CADC is directly relevant to this project -- the opposite of the zero the first (wrong-case) queries suggested. The CSA microsatellite's archive collection is 'NEOSSAT' (773,583 observations). It contains 4,417 observations with target_name '3I', and 44 distinct '3I' observations whose footprints overlap a 0.5-deg circle around our SPHEREx field centre, taken 2025-12-13 to 2025-12-14 -- including science images on 2025-12-14 between ~07:57 and ~09:57 UTC, i.e. the same morning as, and interleaved with, our SPHEREx epochs (07:39 and 10:58 UTC). Identification of target_name '3I' with comet 3I/ATLAS rests on three independent checks that all hold: the name, footprints overlapping the comet's sky position, and timestamps during its pass. Caveats: this check is metadata-level (CAOM-2 TAP); no NEOSSat image pixels were downloaded or measured in this time-boxed pass, and overlap counts mix all historical pointings for the any-target figure (the '3I'-restricted figures are the relevant ones)."
+}

@@ -1,0 +1,770 @@
+{
+  "method": "Band-integrated images on the common epoch-3 grid (Phase 1 _stack), per-epoch global median subtracted. Difference = later - earlier. Noise sigma = MAD-based robust sigma of the whole difference image. Blobs = 8-connected clusters of >=3 px with |diff|>5 sigma. Ranks by integrated SNR = |sum| / (sigma*sqrt(Npix)). Coordinates in 900x900 PNG space (origin top-left).",
+  "critical_caveat": "epoch5 is detector D3 (1.630-2.435 um) and epoch1 is D2 (1.103-1.650 um): the e5-e1 difference mixes REAL motion with bandpass change, so every star leaves a spectral-colour residual. The same-detector e3-e1 (both D2) difference is the clean motion test and is included as validation.",
+  "epoch5_minus_epoch1": {
+    "sigma_MJy_sr": 0.023966675052349385,
+    "median_MJy_sr": 6.1936896646686e-05,
+    "n_blobs_ge3px_5sigma": 158,
+    "comet_new_position_blob": {
+      "distance_centroid_to_predicted_px900": 11.733380250506233,
+      "rank_by_integrated_snr": 25,
+      "peak_snr": 222.547101223837,
+      "integrated_snr": 327.79639949419845
+    },
+    "comet_vacated_position_blob": {
+      "distance_centroid_to_predicted_px900": 7.420841504447049,
+      "rank_by_integrated_snr": 23,
+      "peak_snr": 330.14496491616717,
+      "integrated_snr": 437.1404069383505
+    },
+    "top_detections": [
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          198.5,
+          195.5
+        ],
+        "centroid_png900_xy": [
+          607.6530612244898,
+          600.5119453924915
+        ],
+        "peak_native_xy": [
+          199,
+          196
+        ],
+        "peak_png900_xy": [
+          609.1836734693877,
+          602.0477815699659
+        ],
+        "peak_value_MJy_sr": 248.59012115823393,
+        "sign": "positive",
+        "peak_snr": 10372.324096490194,
+        "integrated_value_MJy_sr_px": 375.1139996888012,
+        "integrated_snr": 7825.741344376216,
+        "rank_by_integrated_snr": 1,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 20,
+        "centroid_native_xy": [
+          287.85,
+          148.5
+        ],
+        "centroid_png900_xy": [
+          881.1734693877552,
+          456.1433447098976
+        ],
+        "peak_native_xy": [
+          286,
+          150
+        ],
+        "peak_png900_xy": [
+          875.5102040816327,
+          460.75085324232083
+        ],
+        "peak_value_MJy_sr": 128.6633586852906,
+        "sign": "positive",
+        "peak_snr": 5368.42755218472,
+        "integrated_value_MJy_sr_px": 709.4054976066179,
+        "integrated_snr": 6618.685790981104,
+        "rank_by_integrated_snr": 2,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          140.5,
+          23.5
+        ],
+        "centroid_png900_xy": [
+          430.1020408163265,
+          72.18430034129693
+        ],
+        "peak_native_xy": [
+          140,
+          24
+        ],
+        "peak_png900_xy": [
+          428.57142857142856,
+          73.72013651877133
+        ],
+        "peak_value_MJy_sr": 91.76516935586764,
+        "sign": "positive",
+        "peak_snr": 3828.865253750422,
+        "integrated_value_MJy_sr_px": 302.2722061166909,
+        "integrated_snr": 6306.093887793167,
+        "rank_by_integrated_snr": 3,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          160.5,
+          55.5
+        ],
+        "centroid_png900_xy": [
+          491.3265306122449,
+          170.4778156996587
+        ],
+        "peak_native_xy": [
+          161,
+          55
+        ],
+        "peak_png900_xy": [
+          492.85714285714283,
+          168.9419795221843
+        ],
+        "peak_value_MJy_sr": 155.52398517994394,
+        "sign": "positive",
+        "peak_snr": 6489.176527000075,
+        "integrated_value_MJy_sr_px": 250.4451353049567,
+        "integrated_snr": 5224.861912591548,
+        "rank_by_integrated_snr": 4,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 8,
+        "centroid_native_xy": [
+          123.125,
+          14.625
+        ],
+        "centroid_png900_xy": [
+          376.9132653061224,
+          44.92320819112628
+        ],
+        "peak_native_xy": [
+          123,
+          15
+        ],
+        "peak_png900_xy": [
+          376.53061224489795,
+          46.075085324232084
+        ],
+        "peak_value_MJy_sr": -134.77127162315472,
+        "sign": "negative",
+        "peak_snr": 5623.277794219664,
+        "integrated_value_MJy_sr_px": -331.30978661414355,
+        "integrated_snr": 4887.440503879239,
+        "rank_by_integrated_snr": 5,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 9,
+        "centroid_native_xy": [
+          283.0,
+          65.0
+        ],
+        "centroid_png900_xy": [
+          866.3265306122448,
+          199.65870307167236
+        ],
+        "peak_native_xy": [
+          283,
+          65
+        ],
+        "peak_png900_xy": [
+          866.3265306122448,
+          199.65870307167236
+        ],
+        "peak_value_MJy_sr": 108.96159243699131,
+        "sign": "positive",
+        "peak_snr": 4546.379178546509,
+        "integrated_value_MJy_sr_px": 304.049350616534,
+        "integrated_snr": 4228.7794747277485,
+        "rank_by_integrated_snr": 6,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          245.5,
+          275.5
+        ],
+        "centroid_png900_xy": [
+          751.530612244898,
+          846.2457337883959
+        ],
+        "peak_native_xy": [
+          246,
+          275
+        ],
+        "peak_png900_xy": [
+          753.0612244897959,
+          844.7098976109215
+        ],
+        "peak_value_MJy_sr": 142.21396210161004,
+        "sign": "positive",
+        "peak_snr": 5933.821099129444,
+        "integrated_value_MJy_sr_px": 201.88492262880496,
+        "integrated_snr": 4211.784116650231,
+        "rank_by_integrated_snr": 7,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          27.5,
+          222.5
+        ],
+        "centroid_png900_xy": [
+          84.18367346938776,
+          683.4470989761093
+        ],
+        "peak_native_xy": [
+          28,
+          222
+        ],
+        "peak_png900_xy": [
+          85.71428571428571,
+          681.9112627986348
+        ],
+        "peak_value_MJy_sr": -113.08486634194098,
+        "sign": "negative",
+        "peak_snr": 4718.421144982962,
+        "integrated_value_MJy_sr_px": -184.47756426549307,
+        "integrated_snr": 3848.6265588060633,
+        "rank_by_integrated_snr": 8,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          220.5,
+          271.5
+        ],
+        "centroid_png900_xy": [
+          675.0,
+          833.9590443686006
+        ],
+        "peak_native_xy": [
+          221,
+          272
+        ],
+        "peak_png900_xy": [
+          676.530612244898,
+          835.494880546075
+        ],
+        "peak_value_MJy_sr": 63.64807046619316,
+        "sign": "positive",
+        "peak_snr": 2655.6904671661546,
+        "integrated_value_MJy_sr_px": 177.12676802310284,
+        "integrated_snr": 3695.2720316066457,
+        "rank_by_integrated_snr": 9,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 7,
+        "centroid_native_xy": [
+          181.0,
+          26.0
+        ],
+        "centroid_png900_xy": [
+          554.0816326530612,
+          79.86348122866895
+        ],
+        "peak_native_xy": [
+          182,
+          26
+        ],
+        "peak_png900_xy": [
+          557.1428571428571,
+          79.86348122866895
+        ],
+        "peak_value_MJy_sr": 93.53818428332252,
+        "sign": "positive",
+        "peak_snr": 3902.8435975791826,
+        "integrated_value_MJy_sr_px": 231.61808231807336,
+        "integrated_snr": 3652.713871721509,
+        "rank_by_integrated_snr": 10,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 11,
+        "centroid_native_xy": [
+          67.54545454545455,
+          133.45454545454547
+        ],
+        "centroid_png900_xy": [
+          206.7717996289425,
+          409.9286379149861
+        ],
+        "peak_native_xy": [
+          68,
+          134
+        ],
+        "peak_png900_xy": [
+          208.16326530612244,
+          411.60409556313994
+        ],
+        "peak_value_MJy_sr": 97.45706303553932,
+        "sign": "positive",
+        "peak_snr": 4066.357257427992,
+        "integrated_value_MJy_sr_px": 287.21055686191295,
+        "integrated_snr": 3613.235502513926,
+        "rank_by_integrated_snr": 11,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          181.5,
+          234.5
+        ],
+        "centroid_png900_xy": [
+          555.6122448979592,
+          720.3071672354948
+        ],
+        "peak_native_xy": [
+          181,
+          235
+        ],
+        "peak_png900_xy": [
+          554.0816326530612,
+          721.8430034129693
+        ],
+        "peak_value_MJy_sr": -48.31110696748345,
+        "sign": "negative",
+        "peak_snr": 2015.761755102014,
+        "integrated_value_MJy_sr_px": -166.61514975415565,
+        "integrated_snr": 3475.9754824193446,
+        "rank_by_integrated_snr": 12,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          82.5,
+          98.5
+        ],
+        "centroid_png900_xy": [
+          252.55102040816325,
+          302.5597269624573
+        ],
+        "peak_native_xy": [
+          82,
+          99
+        ],
+        "peak_png900_xy": [
+          251.0204081632653,
+          304.09556313993176
+        ],
+        "peak_value_MJy_sr": -131.2755777713163,
+        "sign": "negative",
+        "peak_snr": 5477.421356303144,
+        "integrated_value_MJy_sr_px": -148.6115466575805,
+        "integrated_snr": 3100.3788872043087,
+        "rank_by_integrated_snr": 13,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          124.5,
+          243.0
+        ],
+        "centroid_png900_xy": [
+          381.1224489795918,
+          746.4163822525597
+        ],
+        "peak_native_xy": [
+          125,
+          243
+        ],
+        "peak_png900_xy": [
+          382.65306122448976,
+          746.4163822525597
+        ],
+        "peak_value_MJy_sr": 126.65745778516106,
+        "sign": "positive",
+        "peak_snr": 5284.732133619226,
+        "integrated_value_MJy_sr_px": 138.71220972162718,
+        "integrated_snr": 2893.855935765892,
+        "rank_by_integrated_snr": 14,
+        "identification": "unidentified_change_candidate_or_artifact"
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          98.5,
+          133.5
+        ],
+        "centroid_png900_xy": [
+          301.53061224489795,
+          410.0682593856655
+        ],
+        "peak_native_xy": [
+          99,
+          134
+        ],
+        "peak_png900_xy": [
+          303.0612244897959,
+          411.60409556313994
+        ],
+        "peak_value_MJy_sr": 119.01187961646391,
+        "sign": "positive",
+        "peak_snr": 4965.723420395668,
+        "integrated_value_MJy_sr_px": 130.79279753606488,
+        "integrated_snr": 2728.6387713435374,
+        "rank_by_integrated_snr": 15,
+        "identification": "unidentified_change_candidate_or_artifact"
+      }
+    ],
+    "artifact_note": "Blobs outranking the comet are dominated by (a) few-pixel extreme spikes present in only ONE epoch's stack slice at that position (cosmic-ray / hot-pixel residuals not removed by the L2 pipeline flags used here) - verifiable from the per-epoch stack values at their peaks - and (b) extended residuals around the brightest stars from the D2->D3 bandpass change (e5-e1) and PSF/registration mismatch. The comet pair is the strongest EXTENDED, PSF-like positive/negative pair sitting on the predicted positions.",
+    "total_blobs_ge3px_5sigma": 158,
+    "comet_blobs_full_records": [
+      {
+        "n_pix": 277,
+        "centroid_png900_xy": [
+          869.1667280630663,
+          416.2504158401203
+        ],
+        "peak_png900_xy": [
+          881.6326530612245,
+          414.67576791808875
+        ],
+        "peak_value_MJy_sr": 5.3337140588740075,
+        "sign": "positive",
+        "peak_snr": 222.547101223837,
+        "integrated_value_MJy_sr_px": 130.75305690729937,
+        "integrated_snr": 327.79639949419845,
+        "rank_by_integrated_snr_all_blobs": 25,
+        "rank_among_extended": 4,
+        "identification": "COMET_3I_ATLAS_new_position_epoch5",
+        "centroid_distance_to_predicted_px900": 11.733380250506233
+      },
+      {
+        "n_pix": 491,
+        "centroid_png900_xy": [
+          160.87950455131136,
+          469.92833459610875
+        ],
+        "peak_png900_xy": [
+          168.3673469387755,
+          466.8941979522184
+        ],
+        "peak_value_MJy_sr": -7.912477094315067,
+        "sign": "negative",
+        "peak_snr": 330.14496491616717,
+        "integrated_value_MJy_sr_px": -232.15042651329978,
+        "integrated_snr": 437.1404069383505,
+        "rank_by_integrated_snr_all_blobs": 23,
+        "rank_among_extended": 3,
+        "identification": "COMET_3I_ATLAS_vacated_position_epoch1",
+        "centroid_distance_to_predicted_px900": 7.420841504447049
+      }
+    ]
+  },
+  "epoch3_minus_epoch1_same_detector_validation": {
+    "sigma_MJy_sr": 0.03116483639769048,
+    "median_MJy_sr": -0.0012576360571337764,
+    "n_blobs_ge3px_5sigma": 96,
+    "comet_new_position_blob_epoch3": {
+      "distance_centroid_to_predicted_px900": 7.138848115350501,
+      "rank_by_integrated_snr": 12,
+      "peak_snr": 294.1966752933183,
+      "integrated_snr": 335.30506024054444
+    },
+    "comet_vacated_position_blob_epoch1": {
+      "distance_centroid_to_predicted_px900": 8.278602029709019,
+      "rank_by_integrated_snr": 11,
+      "peak_snr": 252.97697581036425,
+      "integrated_snr": 341.91636797303903
+    },
+    "top_detections": [
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          259.5,
+          238.5
+        ],
+        "centroid_png900_xy": [
+          794.3877551020407,
+          732.5938566552901
+        ],
+        "peak_native_xy": [
+          259,
+          238
+        ],
+        "peak_png900_xy": [
+          792.8571428571428,
+          731.0580204778157
+        ],
+        "peak_value_MJy_sr": 142.34956661180163,
+        "sign": "positive",
+        "peak_snr": 4567.634008896985,
+        "integrated_value_MJy_sr_px": 346.66254405635715,
+        "integrated_snr": 5561.757803452598,
+        "rank_by_integrated_snr": 1
+      },
+      {
+        "n_pix": 8,
+        "centroid_native_xy": [
+          123.125,
+          14.875
+        ],
+        "centroid_png900_xy": [
+          376.9132653061224,
+          45.69112627986348
+        ],
+        "peak_native_xy": [
+          123,
+          15
+        ],
+        "peak_png900_xy": [
+          376.53061224489795,
+          46.075085324232084
+        ],
+        "peak_value_MJy_sr": -134.82235816233305,
+        "sign": "negative",
+        "peak_snr": 4326.105115453912,
+        "integrated_value_MJy_sr_px": -331.26378214666994,
+        "integrated_snr": 3758.0634746212263,
+        "rank_by_integrated_snr": 2
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          27.5,
+          222.5
+        ],
+        "centroid_png900_xy": [
+          84.18367346938776,
+          683.4470989761093
+        ],
+        "peak_native_xy": [
+          28,
+          222
+        ],
+        "peak_png900_xy": [
+          85.71428571428571,
+          681.9112627986348
+        ],
+        "peak_value_MJy_sr": -113.10541968059688,
+        "sign": "negative",
+        "peak_snr": 3629.264028126865,
+        "integrated_value_MJy_sr_px": -184.5475832033074,
+        "integrated_snr": 2960.8302904003626,
+        "rank_by_integrated_snr": 3
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          181.5,
+          234.5
+        ],
+        "centroid_png900_xy": [
+          555.6122448979592,
+          720.3071672354948
+        ],
+        "peak_native_xy": [
+          181,
+          235
+        ],
+        "peak_png900_xy": [
+          554.0816326530612,
+          721.8430034129693
+        ],
+        "peak_value_MJy_sr": -48.29453200019436,
+        "sign": "negative",
+        "peak_snr": 1549.648179888193,
+        "integrated_value_MJy_sr_px": -166.62386022712502,
+        "integrated_snr": 2673.267045282371,
+        "rank_by_integrated_snr": 4
+      },
+      {
+        "n_pix": 3,
+        "centroid_native_xy": [
+          208.33333333333334,
+          3.6666666666666665
+        ],
+        "centroid_png900_xy": [
+          637.7551020408163,
+          11.262798634812286
+        ],
+        "peak_native_xy": [
+          208,
+          3
+        ],
+        "peak_png900_xy": [
+          636.734693877551,
+          9.215017064846416
+        ],
+        "peak_value_MJy_sr": 143.38870958181198,
+        "sign": "positive",
+        "peak_snr": 4600.97745266643,
+        "integrated_value_MJy_sr_px": 144.055311659698,
+        "integrated_snr": 2668.724837942212,
+        "rank_by_integrated_snr": 5
+      },
+      {
+        "n_pix": 4,
+        "centroid_native_xy": [
+          82.5,
+          98.5
+        ],
+        "centroid_png900_xy": [
+          252.55102040816325,
+          302.5597269624573
+        ],
+        "peak_native_xy": [
+          82,
+          99
+        ],
+        "peak_png900_xy": [
+          251.0204081632653,
+          304.09556313993176
+        ],
+        "peak_value_MJy_sr": -131.27086024935517,
+        "sign": "negative",
+        "peak_snr": 4212.146618523023,
+        "integrated_value_MJy_sr_px": -148.4909696964282,
+        "integrated_snr": 2382.3479738759734,
+        "rank_by_integrated_snr": 6
+      },
+      {
+        "n_pix": 6,
+        "centroid_native_xy": [
+          90.66666666666667,
+          127.33333333333333
+        ],
+        "centroid_png900_xy": [
+          277.55102040816325,
+          391.1262798634812
+        ],
+        "peak_native_xy": [
+          92,
+          128
+        ],
+        "peak_png900_xy": [
+          281.63265306122446,
+          393.1740614334471
+        ],
+        "peak_value_MJy_sr": 154.81804344700166,
+        "sign": "positive",
+        "peak_snr": 4967.715584044417,
+        "integrated_value_MJy_sr_px": 147.88139648068048,
+        "integrated_snr": 1937.193782577358,
+        "rank_by_integrated_snr": 7
+      },
+      {
+        "n_pix": 30,
+        "centroid_native_xy": [
+          71.26666666666667,
+          62.833333333333336
+        ],
+        "centroid_png900_xy": [
+          218.16326530612244,
+          193.0034129692833
+        ],
+        "peak_native_xy": [
+          71,
+          64
+        ],
+        "peak_png900_xy": [
+          217.34693877551018,
+          196.58703071672355
+        ],
+        "peak_value_MJy_sr": -95.78084213826345,
+        "sign": "negative",
+        "peak_snr": 3073.362584549343,
+        "integrated_value_MJy_sr_px": -165.42713369083722,
+        "integrated_snr": 969.1282785257838,
+        "rank_by_integrated_snr": 8
+      },
+      {
+        "n_pix": 3,
+        "centroid_native_xy": [
+          254.0,
+          6.333333333333333
+        ],
+        "centroid_png900_xy": [
+          777.5510204081633,
+          19.453924914675767
+        ],
+        "peak_native_xy": [
+          255,
+          7
+        ],
+        "peak_png900_xy": [
+          780.6122448979592,
+          21.501706484641637
+        ],
+        "peak_value_MJy_sr": 37.51613781791041,
+        "sign": "positive",
+        "peak_snr": 1203.7970403300626,
+        "integrated_value_MJy_sr_px": 37.87704528999153,
+        "integrated_snr": 701.6986072131232,
+        "rank_by_integrated_snr": 9
+      },
+      {
+        "n_pix": 48,
+        "centroid_native_xy": [
+          60.083333333333336,
+          107.27083333333333
+        ],
+        "centroid_png900_xy": [
+          183.92857142857142,
+          329.5008532423208
+        ],
+        "peak_native_xy": [
+          60,
+          107
+        ],
+        "peak_png900_xy": [
+          183.6734693877551,
+          328.6689419795222
+        ],
+        "peak_value_MJy_sr": 55.27718754684031,
+        "sign": "positive",
+        "peak_snr": 1773.703761555338,
+        "integrated_value_MJy_sr_px": 77.8636379397605,
+        "integrated_snr": 360.619511610333,
+        "rank_by_integrated_snr": 10
+      }
+    ],
+    "artifact_note": "Blobs outranking the comet are dominated by (a) few-pixel extreme spikes present in only ONE epoch's stack slice at that position (cosmic-ray / hot-pixel residuals not removed by the L2 pipeline flags used here) - verifiable from the per-epoch stack values at their peaks - and (b) extended residuals around the brightest stars from the D2->D3 bandpass change (e5-e1) and PSF/registration mismatch. The comet pair is the strongest EXTENDED, PSF-like positive/negative pair sitting on the predicted positions.",
+    "total_blobs_ge3px_5sigma": 96,
+    "comet_blobs_full_records": [
+      {
+        "n_pix": 374,
+        "centroid_png900_xy": [
+          441.962239441231,
+          450.19711266448866
+        ],
+        "peak_png900_xy": [
+          450.0,
+          448.46416382252556
+        ],
+        "peak_value_MJy_sr": 9.168591254260734,
+        "sign": "positive",
+        "peak_snr": 294.1966752933183,
+        "integrated_value_MJy_sr_px": 202.08810899781767,
+        "integrated_snr": 335.30506024054444,
+        "rank_by_integrated_snr_all_blobs": 12,
+        "rank_among_extended": 4,
+        "identification": "COMET_3I_ATLAS_new_position_epoch3",
+        "centroid_distance_to_predicted_px900": 7.138848115350501
+      },
+      {
+        "n_pix": 383,
+        "centroid_png900_xy": [
+          160.02291255927958,
+          470.1583510813677
+        ],
+        "peak_png900_xy": [
+          168.3673469387755,
+          466.8941979522184
+        ],
+        "peak_value_MJy_sr": -7.883986063512504,
+        "sign": "negative",
+        "peak_snr": 252.97697581036425,
+        "integrated_value_MJy_sr_px": -208.53748419046048,
+        "integrated_snr": 341.91636797303903,
+        "rank_by_integrated_snr_all_blobs": 11,
+        "rank_among_extended": 3,
+        "identification": "COMET_3I_ATLAS_vacated_position_epoch1",
+        "centroid_distance_to_predicted_px900": 8.278602029709019
+      }
+    ]
+  }
+}

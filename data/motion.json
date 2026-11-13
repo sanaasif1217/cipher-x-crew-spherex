@@ -1,0 +1,40 @@
+{
+ "fit": "Unweighted least-squares linear fit of RA(t), Dec(t) across the 5 epochs of 2025-12-14. On-sky RA rate = raw RA rate * cos(mean Dec).",
+ "epoch_times_days_since_epoch1": [
+  0.0,
+  0.06556712962962963,
+  0.13416666666666666,
+  0.2721412037037037,
+  0.340162037037037
+ ],
+ "ra_rate_deg_per_day_raw_coordinate": -1.1064031804703411,
+ "dec_rate_deg_per_day": 0.3851898842507471,
+ "ra_rate_on_sky_deg_per_day": -1.101877416061618,
+ "total_on_sky_rate_deg_per_day": 1.167263932003269,
+ "total_on_sky_rate_arcsec_per_hour": 175.08958980049033,
+ "position_angle_deg_east_of_north": 289.26840041100274,
+ "intercept_ra_deg_at_epoch1": 167.27920807208744,
+ "intercept_dec_deg_at_epoch1": 5.121562309539274,
+ "residuals_ra_arcsec_on_sky": [
+  -0.3874680590422425,
+  0.12766684002788897,
+  0.4816981633170441,
+  -0.036493690099449236,
+  -0.1854032530823455
+ ],
+ "residuals_dec_arcsec": [
+  0.13568565861277193,
+  -0.06517660307459039,
+  -0.15102843450094383,
+  0.04194614245385253,
+  0.03857323655367395
+ ],
+ "residual_rms_on_sky_arcsec": 0.3107684488646133,
+ "prediction_plus_6_months": {
+  "target_date": "2026-06-14",
+  "days_after_epoch1": 182.34016203703703,
+  "ra_deg_wrapped_0_360": 325.53747286683233,
+  "dec_deg_unwrapped": 75.35714821884804,
+  "label": "ILLUSTRATIVE LINEAR EXTRAPOLATION ONLY - not an ephemeris."
+ }
+}

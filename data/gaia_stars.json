@@ -1,0 +1,523 @@
+{
+ "query": {
+  "archive": "ESA Gaia Archive TAP sync endpoint (gea.esac.esa.int/tap-server/tap/sync). ADQL written for astroquery.gaia; astroquery's TapPlus client cannot traverse this sandbox's HTTPS egress proxy (TLS WRONG_VERSION_NUMBER), so the identical query was POSTed with a proxy-aware requests session and the VOTable parsed with astropy.",
+  "table": "gaiadr3.gaia_source",
+  "adql": "SELECT source_id, ra, dec, phot_g_mean_mag, phot_bp_mean_mag, phot_rp_mean_mag, bp_rp, pmra, pmdec, parallax FROM gaiadr3.gaia_source WHERE CONTAINS(POINT('ICRS', ra, dec), CIRCLE('ICRS', 167.1309, 5.1732, 0.36)) = 1 AND phot_g_mean_mag IS NOT NULL ORDER BY phot_g_mean_mag ASC",
+  "cone_centre_deg": [
+   167.1309,
+   5.1732
+  ],
+  "cone_radius_deg": 0.36,
+  "rows_returned": 1272,
+  "rows_inside_field": 751,
+  "query_date_utc": "2026-11-13",
+  "position_epoch_handling": "Gaia DR3 positions (epoch J2016.0) propagated to 2025-12-14 with catalogue pmra/pmdec before WCS mapping and nearest-neighbour tests; parallax neglected (<=0.05 arcsec).",
+  "mapping": "RA/Dec -> native pixel via epoch-3 FITS celestial WCS (RA---TAN-SIP) using astropy world_to_pixel_values (0-based, x=column, y=array row, empirically identical to the stored cutout array indexing); PNG900 = native * (900/294, 900/293), the same scaling Phase 1 used. No flip or shift correction was needed (see validation)."
+ },
+ "brightest_20_in_field": [
+  {
+   "gaia_dr3_source_id": 3815552467916713728,
+   "ra_deg_j2016": 167.1919695,
+   "dec_deg_j2016": 4.9924535,
+   "ra_deg_at_2025_12_14": 167.1919379,
+   "dec_deg_at_2025_12_14": 4.9924797,
+   "g_mag": 8.739,
+   "bp_rp": 0.495,
+   "pmra_mas_yr": -11.398,
+   "pmdec_mas_yr": 9.47,
+   "native_pixel_x": 71.0,
+   "native_pixel_y": 62.89,
+   "png900_pixel_x": 217.3,
+   "png900_pixel_y": 193.2
+  },
+  {
+   "gaia_dr3_source_id": 3815554220263349888,
+   "ra_deg_j2016": 167.238269,
+   "dec_deg_j2016": 5.0535948,
+   "ra_deg_at_2025_12_14": 167.2382502,
+   "dec_deg_at_2025_12_14": 5.0535841,
+   "g_mag": 9.054,
+   "bp_rp": 1.181,
+   "pmra_mas_yr": -6.768,
+   "pmdec_mas_yr": -3.857,
+   "native_pixel_x": 60.54,
+   "native_pixel_y": 106.57,
+   "png900_pixel_x": 185.3,
+   "png900_pixel_y": 327.4
+  },
+  {
+   "gaia_dr3_source_id": 3815461930005982592,
+   "ra_deg_j2016": 167.002592,
+   "dec_deg_j2016": 4.9872104,
+   "ra_deg_at_2025_12_14": 167.0026343,
+   "dec_deg_at_2025_12_14": 4.9871531,
+   "g_mag": 9.802,
+   "bp_rp": 0.644,
+   "pmra_mas_yr": 15.238,
+   "pmdec_mas_yr": -20.733,
+   "native_pixel_x": 171.41,
+   "native_pixel_y": 15.8,
+   "png900_pixel_x": 524.7,
+   "png900_pixel_y": 48.5
+  },
+  {
+   "gaia_dr3_source_id": 3815542263074396160,
+   "ra_deg_j2016": 167.3008023,
+   "dec_deg_j2016": 5.031244,
+   "ra_deg_at_2025_12_14": 167.3008081,
+   "dec_deg_at_2025_12_14": 5.0312454,
+   "g_mag": 10.576,
+   "bp_rp": 1.362,
+   "pmra_mas_yr": 2.066,
+   "pmdec_mas_yr": 0.511,
+   "native_pixel_x": 21.7,
+   "native_pixel_y": 109.14,
+   "png900_pixel_x": 66.4,
+   "png900_pixel_y": 335.2
+  },
+  {
+   "gaia_dr3_source_id": 3815554976177594368,
+   "ra_deg_j2016": 167.2251776,
+   "dec_deg_j2016": 5.0634736,
+   "ra_deg_at_2025_12_14": 167.2250737,
+   "dec_deg_at_2025_12_14": 5.0634377,
+   "g_mag": 11.234,
+   "bp_rp": 1.179,
+   "pmra_mas_yr": -37.404,
+   "pmdec_mas_yr": -12.961,
+   "native_pixel_x": 69.93,
+   "native_pixel_y": 108.8,
+   "png900_pixel_x": 214.1,
+   "png900_pixel_y": 334.2
+  },
+  {
+   "gaia_dr3_source_id": 3815566722912562944,
+   "ra_deg_j2016": 167.2773086,
+   "dec_deg_j2016": 5.2770156,
+   "ra_deg_at_2025_12_14": 167.2772947,
+   "dec_deg_at_2025_12_14": 5.2770185,
+   "g_mag": 11.652,
+   "bp_rp": 1.089,
+   "pmra_mas_yr": -4.996,
+   "pmdec_mas_yr": 1.033,
+   "native_pixel_x": 92.23,
+   "native_pixel_y": 235.85,
+   "png900_pixel_x": 282.3,
+   "png900_pixel_y": 724.5
+  },
+  {
+   "gaia_dr3_source_id": 3815553185175648640,
+   "ra_deg_j2016": 167.1391628,
+   "dec_deg_j2016": 5.0232695,
+   "ra_deg_at_2025_12_14": 167.1391824,
+   "dec_deg_at_2025_12_14": 5.0232237,
+   "g_mag": 11.661,
+   "bp_rp": 0.877,
+   "pmra_mas_yr": 7.088,
+   "pmdec_mas_yr": -16.575,
+   "native_pixel_x": 106.57,
+   "native_pixel_y": 67.12,
+   "png900_pixel_x": 326.2,
+   "png900_pixel_y": 206.2
+  },
+  {
+   "gaia_dr3_source_id": 3815607679721369216,
+   "ra_deg_j2016": 167.122295,
+   "dec_deg_j2016": 5.250959,
+   "ra_deg_at_2025_12_14": 167.1222827,
+   "dec_deg_at_2025_12_14": 5.2509441,
+   "g_mag": 11.673,
+   "bp_rp": 0.713,
+   "pmra_mas_yr": -4.403,
+   "pmdec_mas_yr": -5.404,
+   "native_pixel_x": 169.25,
+   "native_pixel_y": 185.63,
+   "png900_pixel_x": 518.1,
+   "png900_pixel_y": 570.2
+  },
+  {
+   "gaia_dr3_source_id": 3815459043787485056,
+   "ra_deg_j2016": 167.0705319,
+   "dec_deg_j2016": 4.966024,
+   "ra_deg_at_2025_12_14": 167.0701035,
+   "dec_deg_at_2025_12_14": 4.9660333,
+   "g_mag": 11.963,
+   "bp_rp": 1.684,
+   "pmra_mas_yr": -154.369,
+   "pmdec_mas_yr": 3.356,
+   "native_pixel_x": 130.2,
+   "native_pixel_y": 20.21,
+   "png900_pixel_x": 398.6,
+   "png900_pixel_y": 62.1
+  },
+  {
+   "gaia_dr3_source_id": 3815568372180004224,
+   "ra_deg_j2016": 167.3216118,
+   "dec_deg_j2016": 5.3118143,
+   "ra_deg_at_2025_12_14": 167.3215558,
+   "dec_deg_at_2025_12_14": 5.3117657,
+   "g_mag": 12.494,
+   "bp_rp": 1.143,
+   "pmra_mas_yr": -20.179,
+   "pmdec_mas_yr": -17.572,
+   "native_pixel_x": 76.68,
+   "native_pixel_y": 264.86,
+   "png900_pixel_x": 234.7,
+   "png900_pixel_y": 813.6
+  },
+  {
+   "gaia_dr3_source_id": 3815459043787958784,
+   "ra_deg_j2016": 167.072407,
+   "dec_deg_j2016": 4.963801,
+   "ra_deg_at_2025_12_14": 167.0724369,
+   "dec_deg_at_2025_12_14": 4.9637467,
+   "g_mag": 12.748,
+   "bp_rp": 0.894,
+   "pmra_mas_yr": 10.789,
+   "pmdec_mas_yr": -19.636,
+   "native_pixel_x": 128.41,
+   "native_pixel_y": 19.53,
+   "png900_pixel_x": 393.1,
+   "png900_pixel_y": 60.0
+  },
+  {
+   "gaia_dr3_source_id": 3815551879505582464,
+   "ra_deg_j2016": 167.1927113,
+   "dec_deg_j2016": 4.9718509,
+   "ra_deg_at_2025_12_14": 167.1926401,
+   "dec_deg_at_2025_12_14": 4.971845,
+   "g_mag": 12.758,
+   "bp_rp": 1.046,
+   "pmra_mas_yr": -25.654,
+   "pmdec_mas_yr": -2.125,
+   "native_pixel_x": 65.76,
+   "native_pixel_y": 51.95,
+   "png900_pixel_x": 201.3,
+   "png900_pixel_y": 159.6
+  },
+  {
+   "gaia_dr3_source_id": 3815618984075291776,
+   "ra_deg_j2016": 167.016069,
+   "dec_deg_j2016": 5.3706401,
+   "ra_deg_at_2025_12_14": 167.0158416,
+   "dec_deg_at_2025_12_14": 5.3706327,
+   "g_mag": 12.836,
+   "bp_rp": 1.843,
+   "pmra_mas_yr": -81.864,
+   "pmdec_mas_yr": -2.682,
+   "native_pixel_x": 254.5,
+   "native_pixel_y": 225.05,
+   "png900_pixel_x": 779.1,
+   "png900_pixel_y": 691.3
+  },
+  {
+   "gaia_dr3_source_id": 3815616823706623104,
+   "ra_deg_j2016": 167.2028748,
+   "dec_deg_j2016": 5.3783878,
+   "ra_deg_at_2025_12_14": 167.2028503,
+   "dec_deg_at_2025_12_14": 5.3783819,
+   "g_mag": 13.127,
+   "bp_rp": 0.177,
+   "pmra_mas_yr": -8.834,
+   "pmdec_mas_yr": -2.129,
+   "native_pixel_x": 156.02,
+   "native_pixel_y": 272.96,
+   "png900_pixel_x": 477.6,
+   "png900_pixel_y": 838.4
+  },
+  {
+   "gaia_dr3_source_id": 3815605416273519872,
+   "ra_deg_j2016": 167.0446482,
+   "dec_deg_j2016": 5.1669428,
+   "ra_deg_at_2025_12_14": 167.0446146,
+   "dec_deg_at_2025_12_14": 5.1668934,
+   "g_mag": 13.227,
+   "bp_rp": 0.881,
+   "pmra_mas_yr": -12.097,
+   "pmdec_mas_yr": -17.874,
+   "native_pixel_x": 191.16,
+   "native_pixel_y": 122.28,
+   "png900_pixel_x": 585.2,
+   "png900_pixel_y": 375.6
+  },
+  {
+   "gaia_dr3_source_id": 3815564390745898496,
+   "ra_deg_j2016": 167.4318996,
+   "dec_deg_j2016": 5.256724,
+   "ra_deg_at_2025_12_14": 167.4319147,
+   "dec_deg_at_2025_12_14": 5.2566891,
+   "g_mag": 13.236,
+   "bp_rp": 0.947,
+   "pmra_mas_yr": 5.456,
+   "pmdec_mas_yr": -12.642,
+   "native_pixel_x": 4.53,
+   "native_pixel_y": 260.96,
+   "png900_pixel_x": 13.9,
+   "png900_pixel_y": 801.6
+  },
+  {
+   "gaia_dr3_source_id": 3815561538887619200,
+   "ra_deg_j2016": 167.2932506,
+   "dec_deg_j2016": 5.1270492,
+   "ra_deg_at_2025_12_14": 167.2931945,
+   "dec_deg_at_2025_12_14": 5.1270134,
+   "g_mag": 13.308,
+   "bp_rp": 0.843,
+   "pmra_mas_yr": -20.205,
+   "pmdec_mas_yr": -12.958,
+   "native_pixel_x": 48.36,
+   "native_pixel_y": 158.89,
+   "png900_pixel_x": 148.0,
+   "png900_pixel_y": 488.1
+  },
+  {
+   "gaia_dr3_source_id": 3815539750517939584,
+   "ra_deg_j2016": 167.2198391,
+   "dec_deg_j2016": 4.9285561,
+   "ra_deg_at_2025_12_14": 167.2198714,
+   "dec_deg_at_2025_12_14": 4.9285075,
+   "g_mag": 13.353,
+   "bp_rp": 0.674,
+   "pmra_mas_yr": 11.638,
+   "pmdec_mas_yr": -17.594,
+   "native_pixel_x": 40.92,
+   "native_pixel_y": 34.98,
+   "png900_pixel_x": 125.3,
+   "png900_pixel_y": 107.4
+  },
+  {
+   "gaia_dr3_source_id": 3815558790108551296,
+   "ra_deg_j2016": 167.209774,
+   "dec_deg_j2016": 5.1324264,
+   "ra_deg_at_2025_12_14": 167.2097153,
+   "dec_deg_at_2025_12_14": 5.1324339,
+   "g_mag": 13.374,
+   "bp_rp": 1.009,
+   "pmra_mas_yr": -21.171,
+   "pmdec_mas_yr": 2.732,
+   "native_pixel_x": 94.43,
+   "native_pixel_y": 142.33,
+   "png900_pixel_x": 289.1,
+   "png900_pixel_y": 437.2
+  },
+  {
+   "gaia_dr3_source_id": 3815457909916592896,
+   "ra_deg_j2016": 167.0993752,
+   "dec_deg_j2016": 4.9250581,
+   "ra_deg_at_2025_12_14": 167.0993554,
+   "dec_deg_at_2025_12_14": 4.9250607,
+   "g_mag": 13.469,
+   "bp_rp": 0.998,
+   "pmra_mas_yr": -7.144,
+   "pmdec_mas_yr": 0.909,
+   "native_pixel_x": 104.84,
+   "native_pixel_y": 5.0,
+   "png900_pixel_x": 320.9,
+   "png900_pixel_y": 15.4
+  }
+ ],
+ "validation_top5": [
+  {
+   "gaia_dr3_source_id": 3815552467916713728,
+   "g_mag": 8.739,
+   "predicted_native_xy": [
+    71.0,
+    62.89
+   ],
+   "image_centroid_native_xy": [
+    71.0,
+    63.0
+   ],
+   "offset_native_px": [
+    0.0,
+    0.11
+   ],
+   "offset_png900_px": [
+    0.0,
+    0.34
+   ],
+   "offset_arcsec": 0.68,
+   "fits_peak_MJy_sr_at_predicted": 610.41,
+   "png_peak_snap_xy": [
+    216,
+    192
+   ],
+   "png_peak_snap_offset_px": [
+    -1,
+    -1
+   ]
+  },
+  {
+   "gaia_dr3_source_id": 3815554220263349888,
+   "g_mag": 9.054,
+   "predicted_native_xy": [
+    60.54,
+    106.57
+   ],
+   "image_centroid_native_xy": [
+    60.56,
+    106.72
+   ],
+   "offset_native_px": [
+    0.02,
+    0.15
+   ],
+   "offset_png900_px": [
+    0.07,
+    0.46
+   ],
+   "offset_arcsec": 0.93,
+   "fits_peak_MJy_sr_at_predicted": 667.44,
+   "png_peak_snap_xy": [
+    182,
+    327
+   ],
+   "png_peak_snap_offset_px": [
+    -3,
+    0
+   ]
+  },
+  {
+   "gaia_dr3_source_id": 3815461930005982592,
+   "g_mag": 9.802,
+   "predicted_native_xy": [
+    171.41,
+    15.8
+   ],
+   "image_centroid_native_xy": [
+    171.39,
+    16.0
+   ],
+   "offset_native_px": [
+    -0.02,
+    0.2
+   ],
+   "offset_png900_px": [
+    -0.06,
+    0.61
+   ],
+   "offset_arcsec": 1.23,
+   "fits_peak_MJy_sr_at_predicted": 191.16,
+   "png_peak_snap_xy": [
+    525,
+    48
+   ],
+   "png_peak_snap_offset_px": [
+    0,
+    0
+   ]
+  },
+  {
+   "gaia_dr3_source_id": 3815542263074396160,
+   "g_mag": 10.576,
+   "predicted_native_xy": [
+    21.7,
+    109.14
+   ],
+   "image_centroid_native_xy": [
+    21.68,
+    109.0
+   ],
+   "offset_native_px": [
+    -0.02,
+    -0.14
+   ],
+   "offset_png900_px": [
+    -0.06,
+    -0.43
+   ],
+   "offset_arcsec": 0.87,
+   "fits_peak_MJy_sr_at_predicted": 272.59,
+   "png_peak_snap_xy": [
+    66,
+    333
+   ],
+   "png_peak_snap_offset_px": [
+    0,
+    -2
+   ]
+  },
+  {
+   "gaia_dr3_source_id": 3815554976177594368,
+   "g_mag": 11.234,
+   "predicted_native_xy": [
+    69.93,
+    108.8
+   ],
+   "image_centroid_native_xy": [
+    70.0,
+    109.0
+   ],
+   "offset_native_px": [
+    0.07,
+    0.2
+   ],
+   "offset_png900_px": [
+    0.21,
+    0.61
+   ],
+   "offset_arcsec": 1.3,
+   "fits_peak_MJy_sr_at_predicted": 155.87,
+   "png_peak_snap_xy": [
+    215,
+    335
+   ],
+   "png_peak_snap_offset_px": [
+    1,
+    1
+   ]
+  }
+ ],
+ "validation_median_offset_native_px": [
+  0.0,
+  0.15
+ ],
+ "spectra_photometry_stars_matched": {
+  "field_star_1": {
+   "spectra_native_xy": [
+    61.0,
+    107.0
+   ],
+   "nearest_gaia_source_id": 3815554220263349888,
+   "nearest_gaia_g_mag": 9.054,
+   "separation_native_px": 0.63,
+   "separation_arcsec": 3.9
+  },
+  "field_star_2": {
+   "spectra_native_xy": [
+    71.0,
+    63.0
+   ],
+   "nearest_gaia_source_id": 3815552467916713728,
+   "nearest_gaia_g_mag": 8.739,
+   "separation_native_px": 0.11,
+   "separation_arcsec": 0.7
+  },
+  "field_star_3": {
+   "spectra_native_xy": [
+    171.0,
+    16.0
+   ],
+   "nearest_gaia_source_id": 3815461930005982592,
+   "nearest_gaia_g_mag": 9.802,
+   "separation_native_px": 0.46,
+   "separation_arcsec": 2.8
+  }
+ },
+ "comet_nearest_gaia_neighbour": {
+  "epoch1": {
+   "comet_ra_deg": 167.2791,
+   "comet_dec_deg": 5.1216,
+   "nearest_gaia_source_id": 3815555903890527104,
+   "nearest_gaia_g_mag": 15.948,
+   "nearest_separation_arcsec": 51.1
+  },
+  "epoch5": {
+   "comet_ra_deg": 166.9028,
+   "comet_dec_deg": 5.2526,
+   "nearest_gaia_source_id": 3815610570234481408,
+   "nearest_gaia_g_mag": 21.204,
+   "nearest_separation_arcsec": 27.1
+  }
+ }
+}

@@ -1,0 +1,128 @@
+{
+ "task": "Phase 4: download and verify one real NEOSSat science image of 3I/ATLAS from CADC",
+ "status": "DOWNLOAD SUCCEEDED; comet NOT detected in this single frame (see visibility_assessment)",
+ "observation": {
+  "observationID_caom": "2025348075859",
+  "obs_id_header": "NEOS_SCI_2025348075859",
+  "target_name": "3I",
+  "intent": "science",
+  "calibration_level_caom": 2,
+  "cal_lvl_header": "CALIBRATED",
+  "product_header": "cor",
+  "date_obs_utc": "2025-12-14T07:58:59.053",
+  "plane_time_bounds_utc": [
+   "2025-12-14 07:58:59.053",
+   "2025-12-14 07:59:14.057"
+  ],
+  "data_release": "2025-12-14T07:58:59 (CAOM Plane.dataRelease = header RELEASE; public)"
+ },
+ "artifact": {
+  "uri": "cadc:NEOSSAT/NEOS_SCI_2025348075859_cor.fits",
+  "content_length_caom_bytes": 4219200,
+  "downloaded_bytes": 4219200,
+  "content_type": "application/fits",
+  "download_url_pattern": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/raven/files/{artifactURI}",
+  "download_url_used": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/raven/files/cadc:NEOSSAT/NEOS_SCI_2025348075859_cor.fits",
+  "local_fits_path": "work/NEOS_SCI_2025348075859_cor.fits (4.2 MB, kept - well under the 200 MB cap)",
+  "preview_png": "data/neossat_preview.png"
+ },
+ "download_attempts": [
+  {
+   "route": "CADC TAP (argus) CAOM-2 Artifact query",
+   "result": "SUCCESS - artifact URIs and release metadata are public"
+  },
+  {
+   "route": "GET https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/data/pub/{artifactURI} (science FITS)",
+   "result": "HTTP 401 \"authentication required\""
+  },
+  {
+   "route": "GET data/pub for the preview PNG artifact",
+   "result": "HTTP 401 \"authentication required\""
+  },
+  {
+   "route": "control: GET data/pub for a public CFHT science file (cadc:CFHT/2015609p.fits.fz)",
+   "result": "HTTP 401 as well - data/pub is auth-gated in general, not a NEOSSat proprietary block"
+  },
+  {
+   "route": "GET https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/minoc/files/{artifactURI}",
+   "result": "HTTP 404"
+  },
+  {
+   "route": "DataLink links endpoints (www and ws hosts, /datalink/links and /caom2ops/datalink)",
+   "result": "HTTP 404 on all candidates"
+  },
+  {
+   "route": "GET https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/raven/files/{artifactURI}",
+   "result": "SUCCESS - HTTP 200, application/fits, full 4,219,200 bytes"
+  }
+ ],
+ "image_facts": {
+  "format": "FITS, single primary HDU, float32",
+  "dimensions_px": [
+   1024,
+   1020
+  ],
+  "telescope": "NEOSSat",
+  "instrument_detector": "NEOSSat_Science",
+  "filter": "CLEAR",
+  "central_wavelength_angstrom": 6000,
+  "bandpass_angstrom": "4000,9000",
+  "exposure_s": 15.0039,
+  "gain_e_per_adu": 1.1,
+  "read_noise_e": 8.0,
+  "pixel_scale_arcsec_per_px": 2.997,
+  "fov_deg": [
+   0.852,
+   0.849
+  ],
+  "rotation_crota2_deg": 10.85542,
+  "tracking_moving_flag": "F (sidereal tracking; comet trail in 15 s = 0.73 arcsec, sub-pixel)",
+  "saturated_pixels_header": 21,
+  "image_completeness_pct": 100.0,
+  "pixel_stats_adu": {
+   "min": -36224.0,
+   "median": 511.0,
+   "p99": 1887.0,
+   "p99_9": 27700.689000000595,
+   "max": 63882.0
+  }
+ },
+ "pointing": {
+  "header_ra_dec_strings": [
+   "11:08:31.9",
+   "05:10:20.6"
+  ],
+  "wcs_crval_deg": [
+   167.13292828,
+   5.17238096
+  ],
+  "spherex_field_centre_deg": [
+   167.1309,
+   5.1732
+  ],
+  "offset_from_spherex_field_centre_arcsec": 7.9,
+  "note": "NEOSSat WCS centre sits ~8 arcsec from the SPHEREx field centre: the two telescopes were looking at the same patch of sky that morning."
+ },
+ "comet_prediction": {
+  "method": "Linear interpolation of the SPHEREx 5-epoch motion fit (data/motion.json; fit RMS 0.31 arcsec over 2025-12-14) to the NEOSSat mid-exposure time. NEOSSat time falls between SPHEREx epochs 3 and 4, so this is interpolation, not extrapolation.",
+  "mid_exposure_utc": "2025-12-14T07:59:06.555",
+  "ra_deg": 167.11606,
+  "dec_deg": 5.17836,
+  "pixel_xy_0based": [
+   498.5,
+   518.9
+  ],
+  "offset_from_image_pointing_centre_arcsec": 61
+ },
+ "visibility_assessment": {
+  "verdict": "NOT DETECTED in this single 15.0 s frame",
+  "aperture_excess_adu": {
+   "r3px": -199,
+   "r5px": 2352,
+   "r8px": 20513
+  },
+  "control_test": "Same aperture measurement at 400 random field positions: the predicted-position excess ranks at the 12th percentile (r=5 px) and 60th percentile (r=8 px) - statistically indistinguishable from empty sky positions.",
+  "nearest_features": "Brightest raw pixel within 15 px of the prediction is 2920 ADU at 12.3 px offset (consistent with noise/star field). A diffuse patch 14.5 px (44 arcsec) away at (484,519) has a profile width (sigma ~4.9 px) matching the stellar PSF in this product (sigma 5.3-6.5 px) and no counterpart at that fixed sky position in SPHEREx epochs 1/5; assessed as a faint field star, not the comet.",
+  "context": "3I/ATLAS in mid-Dec 2025 was a faint, highly diffuse comet; NEOSSat is a 15 cm microsatellite and this is a single 15 s sidereal-tracked exposure. CADC holds 44 NEOSSat 3I observations overlapping this field from 2025-12-13/14 (data/neossat_check.json); shift-and-stack of that sequence is the natural next step and was out of scope for this single-image task."
+ }
+}
