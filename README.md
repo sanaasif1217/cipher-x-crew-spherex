@@ -1,7 +1,7 @@
 # Cipher-X Omega — Memory over Files
 
 **NASA Space Apps Challenge 2026 · Challenge: Planet X and SPHEREx**
-**Team: Cipher-X Crew (Muridke, Pakistan)**
+**Team: Cipher-X Crew (Pakistan and India)**
 
 🔭 **Live demo: https://sanaasif1217.github.io/cipher-x-crew-spherex/**
 
