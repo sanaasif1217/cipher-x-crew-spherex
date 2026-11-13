@@ -211,6 +211,26 @@ footer{margin-top:70px;border-top:1px solid var(--line-soft);padding:28px 0 44px
   font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--chip)}
 .hero-actions a.primary{background:var(--electric);border-color:var(--electric);color:#fff}
 .hero-actions a:hover{border-color:var(--blue)}
+/* ---------- coordinate lookup ---------- */
+.coord-form{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end}
+@media (max-width:820px){.coord-form{grid-template-columns:1fr}}
+.coord-field label{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px}
+.coord-field input,.coord-field select{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:1rem;padding:10px 13px;min-height:46px}
+.coord-field input:focus,.coord-field select:focus{border-color:var(--blue);outline:2px solid var(--blue-bright);outline-offset:1px}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+.presets .lbl{font-size:.82rem;color:var(--ink-faint)}
+.lookup-msg{margin-top:16px;border-radius:12px;padding:15px 17px;border:1px solid var(--line);display:none}
+.lookup-msg.show{display:block}
+.lookup-msg.ok{border-color:var(--good);background:rgba(74,222,128,.07)}
+.lookup-msg.out{border-color:rgba(233,180,76,.6);background:rgba(233,180,76,.07)}
+.lookup-msg.err{border-color:var(--red);background:rgba(255,122,107,.08)}
+.lookup-msg h3{font-size:1rem;margin-bottom:5px}
+.lookup-msg p{font-size:.92rem;color:var(--ink-dim)}
+.lookup-msg code{display:block;margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:.82rem;background:var(--panel2);
+  border:1px solid var(--line-soft);border-radius:8px;padding:9px 12px;word-break:break-all;color:var(--ink)}
+.lookup-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+@media (max-width:820px){.lookup-steps{grid-template-columns:1fr}}
 tr.valid td{background:rgba(74,222,128,.07)}
 @media (prefers-color-scheme: light){tr.valid td{background:rgba(23,114,69,.06)}}
 @media (max-width:640px){
@@ -257,6 +277,7 @@ section{scroll-margin-top:72px}
   <div class="wrap">
     <a href="#data">Data</a>
     <a href="#method">Method</a>
+    <a href="#lookup">Look up a patch</a>
     <a href="#blink">Blink</a>
     <a href="#scan">Difference</a>
     <a href="#fingerprint">Fingerprints</a>
@@ -365,6 +386,41 @@ section{scroll-margin-top:72px}
   <div style="margin-top:16px">
     <h3 style="margin-bottom:8px">Existing tools</h3>
     <p class="small" style="font-size:.93rem">Existing public tools each cover part of this method: Backyard Worlds: Planet 9 and Backyard Worlds: Cool Neighbors use volunteers blinking WISE images to find movers; SPIFF (Gagné et al. 2026) extracts SPHEREx spectrophotometry of known moving sources; IRSA provides archive access and a moving-object search tool for known objects. This page combines epoch comparison and per-object spectral records in one viewer, applied to the dataset above.</p>
+  </div>
+</section>
+
+<!-- ================= PATCH FINDER / COORDINATE LOOKUP ================= -->
+<section id="lookup">
+  <div class="sec-head">
+    <span class="status tested">Tested example</span>
+    <h2>Look up a patch of sky</h2>
+    <p>Enter the coordinates of a patch of sky — right ascension and declination. The lookup checks which SPHEREx observations cover that point, and where a series is loaded on this page it opens the blink sequence below, so moving objects stand out like a short video.</p>
+  </div>
+  <div class="panel" style="padding:22px">
+    <form class="coord-form" id="coordForm" novalidate>
+      <div class="coord-field">
+        <label for="inRA">Right Ascension</label>
+        <input id="inRA" name="ra" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="167.1309" aria-describedby="coordHint" />
+      </div>
+      <div class="coord-field">
+        <label for="inDec">Declination</label>
+        <input id="inDec" name="dec" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="+5.1732" aria-describedby="coordHint" />
+      </div>
+      <button class="btn primary" type="submit" style="min-height:46px">Find this patch ↓</button>
+    </form>
+    <p class="hint" id="coordHint">Decimal degrees (167.1309, +5.1732) or sexagesimal (11:08:31.4, +05:10:23.5) are both accepted.</p>
+    <div class="presets" role="group" aria-label="Example coordinates">
+      <span class="lbl">Try:</span>
+      <button class="btn" type="button" id="presetComet">Comet 3I/ATLAS field · RA 167.1309, Dec +5.1732</button>
+      <button class="btn" type="button" id="presetNEP">North ecliptic pole · RA 270.0000, Dec +66.5600</button>
+    </div>
+    <div class="lookup-msg" id="lookupMsg" role="status" aria-live="polite"></div>
+    <div class="lookup-steps">
+      <div class="step"><div class="num">STEP 1</div><h4>Query the archive</h4><p>The coordinates are checked against the IRSA SPHEREx observation table (pipeline step 13, <span class="mono">13_patch_finder.py</span>): every level-2 image whose footprint contains the point is an epoch of that patch.</p></div>
+      <div class="step"><div class="num">STEP 2</div><h4>Build the series</h4><p>Matching epochs are cut out at the same size, registered to one sky grid and given a shared stretch — the same preparation used for the five frames below.</p></div>
+      <div class="step"><div class="num">STEP 3</div><h4>Blink it</h4><p>The series plays in time order in the blink comparator. Stars stay fixed; anything that moved jumps between frames.</p></div>
+    </div>
+    <p class="small" style="margin-top:14px">This page is a static snapshot, so it ships with one patch fully loaded — the comet field, with its five December 2025 epochs ready to blink below. The archive query itself (step 13) runs for any coordinates from the project repository; serving freshly cut-out image series for arbitrary coordinates inside this page is the remaining hosting step, stated under Limits.</p>
   </div>
 </section>
 
@@ -700,6 +756,7 @@ section{scroll-margin-top:72px}
       <li><b>The +6-month position is not an ephemeris.</b> It is a straight-line extension of the measured track, shown to illustrate the projection method. Real orbits are curved.</li>
       <li><b>Demonstrated on a known object.</b> The comet, its field and its approximate positions were known in advance. A blind run — the same pipeline on a field that has not been pre-solved — has not yet been demonstrated.</li>
       <li><b>No recovery statistics yet.</b> No injection test (planting a synthetic mover and checking the pipeline recovers it) has been run, so no false-positive or completeness rate is quoted. The result is one object in one field.</li>
+      <li><b>Coordinate lookup is pre-loaded for one patch.</b> The patch finder (pipeline step 13) lists the SPHEREx epochs covering any RA/Dec, and runs from the project repository. This static page ships with cutouts loaded only for the comet field, so blinking an arbitrary patch inside the page still needs a small hosted service to cut out and serve that series on request.</li>
       <li><b>No Planet X detection is claimed.</b> The method is demonstrated on a comet. Applying it to slow-moving candidates would require survey-scale data across repeat surveys, which this single-field demonstration does not use.</li>
       <li><b>Future work.</b> A search backend (FastAPI + Qdrant) for fingerprint records at survey scale; assembly of full 102-band spectra per object; stacking of all 44 NEOSSat frames; automated ingestion of new SPHEREx releases.</li>
     </ul>
@@ -722,7 +779,7 @@ section{scroll-margin-top:72px}
     <div class="res"><p class="agency">CSA · 7 of 8</p><h4>NEOSSat Data Tutorial</h4><p>Guided how NEOSSat observations are structured and queried.</p></div>
     <div class="res"><p class="agency">CSA · 8 of 8</p><h4>NEOSSat Dataset</h4><p>The NEOSSAT collection: 773,583 observations, 4,417 targeting "3I", 44 overlapping this field — one of them retrieved in full and analysed.</p></div>
   </div>
-  <p class="small" style="margin-top:16px"><b>Methods note:</b> IRSA cutout service → astropy / reproject onto a common WCS grid → per-image background subtraction and shared stretch → aperture photometry (r = 3 px, local annulus background) → difference imaging with MAD-based noise estimate → Gaia DR3 cone search with proper-motion propagation → CADC CAOM-2 queries → NEOSSat science frame retrieved via CADC, with aperture photometry at the motion-fit-interpolated comet position and a 400-position random control test → measured positions validated against the JPL Horizons ephemeris for C/2025 N1 at the five epoch times.</p>
+  <p class="small" style="margin-top:16px"><b>Methods note:</b> IRSA cutout service → astropy / reproject onto a common WCS grid → per-image background subtraction and shared stretch → aperture photometry (r = 3 px, local annulus background) → difference imaging with MAD-based noise estimate → Gaia DR3 cone search with proper-motion propagation → CADC CAOM-2 queries → NEOSSat science frame retrieved via CADC, with aperture photometry at the motion-fit-interpolated comet position and a 400-position random control test → measured positions validated against the JPL Horizons ephemeris for C/2025 N1 at the five epoch times → coordinate lookups query the IRSA SPHEREx observation table for level-2 footprints containing the requested point (patch finder, pipeline step 13).</p>
 </section>
 
 <!-- ================= TEAM ================= -->
@@ -832,6 +889,83 @@ section{scroll-margin-top:72px}
     gaiaLayer.style.display = ev.target.checked ? "" : "none";
   });
   show(0);
+
+  /* ----- Coordinate lookup / patch finder ----- */
+  var FIELD = {ra:167.1309, dec:5.1732};
+  var NEP = {ra:270.0, dec:66.56};
+  var lookupMsg = document.getElementById("lookupMsg");
+  function parseCoord(v, isRA){
+    if (v === null || v === undefined) return NaN;
+    var s = String(v).trim();
+    if (!s) return NaN;
+    var neg = /^-/.test(s);
+    var cleaned = s.replace(/[hmsd°'"]/gi, " ").replace(/:/g, " ");
+    var parts = cleaned.split(/\s+/).filter(function(p){ return p.length; })
+      .map(function(p){ return parseFloat(p); });
+    if (!parts.length || parts.some(function(p){ return isNaN(p); })) return NaN;
+    var val;
+    if (parts.length === 1){ val = parts[0]; }
+    else {
+      val = Math.abs(parts[0]) + (parts[1] || 0) / 60 + (parts[2] || 0) / 3600;
+      if (parts[0] < 0 || neg) val = -val;
+      if (isRA) val = val * 15; /* hours to degrees */
+    }
+    return val;
+  }
+  function angSep(ra1, dec1, ra2, dec2){
+    var p = Math.PI / 180;
+    var a = Math.sin((dec2 - dec1) * p / 2) * Math.sin((dec2 - dec1) * p / 2) +
+      Math.cos(dec1 * p) * Math.cos(dec2 * p) *
+      Math.sin((ra2 - ra1) * p / 2) * Math.sin((ra2 - ra1) * p / 2);
+    return 2 * Math.asin(Math.min(1, Math.sqrt(a))) / p;
+  }
+  function fmt(n, d){ return (n >= 0 ? "+" : "") + n.toFixed(d); }
+  function showLookup(cls, html){
+    lookupMsg.className = "lookup-msg show " + cls;
+    lookupMsg.innerHTML = html;
+  }
+  function runLookup(){
+    var ra = parseCoord(document.getElementById("inRA").value, true);
+    var dec = parseCoord(document.getElementById("inDec").value, false);
+    if (isNaN(ra) || isNaN(dec) || ra < 0 || ra >= 360 || dec < -90 || dec > 90){
+      showLookup("err", "<h3>Those coordinates could not be read</h3><p>Enter right ascension between 0° and 360° and declination between −90° and +90°, in decimal degrees (167.1309, +5.1732) or sexagesimal (11:08:31.4, +05:10:23.5).</p>");
+      return;
+    }
+    var dField = angSep(ra, dec, FIELD.ra, FIELD.dec);
+    var dNEP = angSep(ra, dec, NEP.ra, NEP.dec);
+    var coordLine = "RA " + ra.toFixed(4) + "° · Dec " + fmt(dec, 4) + "°";
+    if (dField <= 0.36){
+      showLookup("ok", "<h3>This patch is loaded — 5 epochs ready to blink</h3>" +
+        "<p>" + coordLine + " lies inside the demonstration field (centre RA 167.1309°, Dec +5.1732°, 0.5° across). The patch finder (step 13) finds <b>184 SPHEREx epochs</b> covering this point between 2 May 2025 and 27 May 2026; the five from 14 Dec 2025 are loaded below. Pressing play in the blink comparator runs them as a short video — watch the comet jump while the stars stay fixed.</p>" +
+        "<code>python pipeline/13_patch_finder.py " + ra.toFixed(4) + " " + fmt(dec, 4) + "</code>");
+      document.getElementById("blink").scrollIntoView({behavior:"smooth"});
+      setPlay(true);
+      return;
+    }
+    if (dNEP <= 0.6){
+      showLookup("out", "<h3>Archive check run for this patch — 14,800 epochs</h3>" +
+        "<p>" + coordLine + " is the north ecliptic pole, which SPHEREx re-images on every orbit. The patch finder (step 13) finds <b>14,800 SPHEREx epochs</b> covering this point, from 24 Apr 2025 to 4 Oct 2026. Those cutouts are not pre-loaded in this static page, so there is no blink series to play here yet — the epoch list itself comes from the repository tool:</p>" +
+        "<code>python pipeline/13_patch_finder.py " + ra.toFixed(4) + " " + fmt(dec, 4) + "</code>");
+      return;
+    }
+    showLookup("out", "<h3>No image series is pre-loaded for this patch</h3>" +
+      "<p>" + coordLine + " is " + dField.toFixed(2) + "° from the demonstration field — outside its 0.5° frame, so this page holds no epochs for it. That is a limit of this static snapshot, not of the method: the patch finder in the project repository lists every SPHEREx epoch covering any point. Run it with your coordinates:</p>" +
+      "<code>python pipeline/13_patch_finder.py " + ra.toFixed(4) + " " + fmt(dec, 4) + "</code>" +
+      "<p style='margin-top:10px'>Cutting out and serving that series inside this page is the one remaining hosting step (see Limits). To see the blink video working now, try the comet field preset above.</p>");
+  }
+  document.getElementById("coordForm").addEventListener("submit", function(ev){
+    ev.preventDefault(); runLookup();
+  });
+  document.getElementById("presetComet").addEventListener("click", function(){
+    document.getElementById("inRA").value = "167.1309";
+    document.getElementById("inDec").value = "+5.1732";
+    runLookup();
+  });
+  document.getElementById("presetNEP").addEventListener("click", function(){
+    document.getElementById("inRA").value = "270.0000";
+    document.getElementById("inDec").value = "+66.5600";
+    runLookup();
+  });
 
   /* ----- Identification check ----- */
   var gFrames = document.querySelectorAll("#gameStage img.frame");
