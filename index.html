@@ -423,11 +423,19 @@ section{scroll-margin-top:72px}
       </div>
       <button class="btn primary" type="submit" style="min-height:46px">Find this patch ↓</button>
     </form>
-    <p class="hint" id="coordHint">Decimal degrees (167.1309, +5.1732) or sexagesimal (11:08:31.4, +05:10:23.5) are both accepted.</p>
+    <p class="hint" id="coordHint">Decimal degrees (167.1309, +5.1732) or sexagesimal (11:08:31.4, +05:10:23.5) are both accepted. Coordinates can also be passed in the page address — add <span class="mono">?ra=269.45208&amp;dec=4.69339</span> and the lookup fills the form and runs on load, so a patch can be linked or embedded from other pages.</p>
     <div class="presets" role="group" aria-label="Example coordinates">
       <span class="lbl">Try:</span>
       <button class="btn" type="button" id="presetComet">Comet 3I/ATLAS field · RA 167.1309, Dec +5.1732</button>
       <button class="btn" type="button" id="presetNEP">North ecliptic pole · RA 270.0000, Dec +66.5600</button>
+    </div>
+    <div class="presets" role="group" aria-label="Challenge test targets">
+      <span class="lbl">The challenge's named test targets:</span>
+      <button class="btn test-preset" type="button" data-ra="269.45208" data-dec="+4.69339">Barnard's Star · RA 269.4521, Dec +4.6934</button>
+      <button class="btn test-preset" type="button" data-ra="330.84024" data-dec="-56.78598">Epsilon Indi · RA 330.8402, Dec −56.7860</button>
+      <button class="btn test-preset" type="button" data-ra="133.79513" data-dec="-7.24515">WISE 0855 · RA 133.7951, Dec −7.2452</button>
+      <button class="btn test-preset" type="button" data-ra="76.95653" data-dec="+30.40144">RW Aurigae · RA 76.9565, Dec +30.4014</button>
+      <button class="btn test-preset" type="button" data-ra="248.16760" data-dec="+66.75492">R Draconis · RA 248.1676, Dec +66.7549</button>
     </div>
     <div class="lookup-msg" id="lookupMsg" role="status" aria-live="polite"></div>
     <div class="lookup-steps">
@@ -1069,6 +1077,15 @@ section{scroll-margin-top:72px}
   /* ----- Coordinate lookup / patch finder ----- */
   var FIELD = {ra:167.1309, dec:5.1732};
   var NEP = {ra:270.0, dec:66.56};
+  /* The five test targets named in the challenge brief — epoch counts and spans
+     verified with the patch finder (pipeline step 13). */
+  var TEST_TARGETS = [
+    {name:"Barnard's Star", detail:"", ra:269.45208, dec:4.69339, epochs:"183", span:"15 Aug 2025 to 22 Sep 2026"},
+    {name:"Epsilon Indi", detail:"home to the brown-dwarf pair Epsilon Indi B", ra:330.84024, dec:-56.78598, epochs:"238", span:"24 Apr 2025 to 2 Oct 2026"},
+    {name:"WISE 0855", detail:"a fast-moving brown dwarf", ra:133.79513, dec:-7.24515, epochs:"129", span:"5 May 2025 to 14 May 2026"},
+    {name:"RW Aurigae", detail:"a variable star", ra:76.95653, dec:30.40144, epochs:"168", span:"1 Sep 2025 to 16 Sep 2026"},
+    {name:"R Draconis", detail:"a variable star", ra:248.16760, dec:66.75492, epochs:"1,258", span:"24 Apr 2025 to 27 Sep 2026"}
+  ];
   var lookupMsg = document.getElementById("lookupMsg");
   function parseCoord(v, isRA){
     if (v === null || v === undefined) return NaN;
@@ -1124,6 +1141,15 @@ section{scroll-margin-top:72px}
         "<code>python pipeline/13_patch_finder.py " + ra.toFixed(4) + " " + fmt(dec, 4) + "</code>");
       return;
     }
+    for (var ti = 0; ti < TEST_TARGETS.length; ti++){
+      var tt = TEST_TARGETS[ti];
+      if (angSep(ra, dec, tt.ra, tt.dec) <= 0.6){
+        showLookup("out", "<h3>Archive check run for this patch — " + tt.epochs + " epochs</h3>" +
+          "<p>" + coordLine + " is " + tt.name + (tt.detail ? " — " + tt.detail : "") + ", one of the test targets named in the challenge brief. The patch finder (step 13) finds <b>" + tt.epochs + " SPHEREx epochs</b> covering this point, from " + tt.span + ". Those cutouts are not pre-loaded in this static page, so there is no blink series to play here yet — the epoch list itself comes from the repository tool:</p>" +
+          "<code>python pipeline/13_patch_finder.py " + ra.toFixed(4) + " " + fmt(dec, 4) + "</code>");
+        return;
+      }
+    }
     showLookup("out", "<h3>No image series is pre-loaded for this patch</h3>" +
       "<p>" + coordLine + " is " + dField.toFixed(2) + "° from the demonstration field — outside its 0.5° frame, so this page holds no epochs for it. That is a limit of this static snapshot, not of the method: the patch finder in the project repository lists every SPHEREx epoch covering any point. Run it with your coordinates:</p>" +
       "<code>python pipeline/13_patch_finder.py " + ra.toFixed(4) + " " + fmt(dec, 4) + "</code>" +
@@ -1142,6 +1168,23 @@ section{scroll-margin-top:72px}
     document.getElementById("inDec").value = "+66.5600";
     runLookup();
   });
+  document.querySelectorAll(".test-preset").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.getElementById("inRA").value = b.getAttribute("data-ra");
+      document.getElementById("inDec").value = b.getAttribute("data-dec");
+      runLookup();
+    });
+  });
+  /* ----- coordinates in the URL: ?ra=…&dec=… prefill the form and run ----- */
+  try {
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlRA = urlParams.get("ra"), urlDec = urlParams.get("dec");
+    if (urlRA !== null && urlDec !== null && urlRA.trim() !== "" && urlDec.trim() !== ""){
+      document.getElementById("inRA").value = urlRA;
+      document.getElementById("inDec").value = urlDec;
+      runLookup();
+    }
+  } catch (e) { /* no readable query string — the form keeps its defaults */ }
 
   /* ----- Identification check ----- */
   var gFrames = document.querySelectorAll("#gameStage img.frame");
