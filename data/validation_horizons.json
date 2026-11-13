@@ -1,0 +1,16 @@
+{
+ "reference": "JPL Horizons ephemeris, designation C/2025 N1 (3I/ATLAS), geocentric",
+ "per_epoch_separation_arcsec": [
+  0.23,
+  0.11,
+  0.04,
+  0.33,
+  0.07
+ ],
+ "max_separation_arcsec": 0.33,
+ "horizons_fit_rate_deg_per_day": 1.1673,
+ "horizons_fit_position_angle_deg": 289.27,
+ "measured_fit_rate_deg_per_day": 1.167263932003269,
+ "measured_fit_position_angle_deg": 289.27,
+ "conclusion": "Measured positions agree with the independent ephemeris to within 0.33 arcsec at every epoch; fitted rate and position angle are identical to the ephemeris fit."
+}
