@@ -1,0 +1,594 @@
+{
+ "method": "Step-03 detector unchanged (5-sigma, >=3 px, 8-connected, rank by integrated SNR) on e3-e1 (both D2). Fake movers use the comet's own measured 9x9 epoch-3 profile, planted at random positions with the comet's measured (+92, -7) px e1->e3 displacement. Recovery = matched blob of correct polarity within 6 native px at both ends.",
+ "seed": 20261113,
+ "n_trials": 20,
+ "recovered": 20,
+ "recovery_fraction": 1.0,
+ "template_total_flux_MJy_sr_px": 64.8,
+ "template_peak_MJy_sr": 8.53,
+ "template_local_bg_MJy_sr": 1.032,
+ "displacement_native_px": [
+  92.0,
+  -7.0
+ ],
+ "match_radius_px": 6.0,
+ "coordinate_note": "Native stack positions were verified against the stack itself: epoch-1 comet (55, 153), epoch-3 comet (147, 146). Metadata PNG y maps to native y directly (y_nat = y_png*293/900); step 03's to_png900 helper flips y, so its PNG-space comet distances should not be used for planting.",
+ "baseline_unmodified_e3_minus_e1": {
+  "sigma_MJy_sr": 0.03116483639769048,
+  "n_blobs_ge3px_5sigma": 96,
+  "comet_appeared": {
+   "rank_by_integrated_snr": 12,
+   "peak_snr": 294.23702962218715,
+   "integrated_snr": 336.08547581897676,
+   "distance_px": 2.69
+  },
+  "comet_vacated": {
+   "rank_by_integrated_snr": 11,
+   "peak_snr": 252.93662148149548,
+   "integrated_snr": 341.12661818874915,
+   "distance_px": 2.73
+  }
+ },
+ "trials": [
+  {
+   "trial": 1,
+   "planted_A_xy": [
+    52.6,
+    234.4
+   ],
+   "planted_B_xy": [
+    144.6,
+    227.4
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 97,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 0.31,
+    "peak_snr": 273.3,
+    "integrated_snr": 283.8
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 0.54,
+    "peak_snr": 272.3,
+    "integrated_snr": 293.5
+   }
+  },
+  {
+   "trial": 2,
+   "planted_A_xy": [
+    56.6,
+    68.4
+   ],
+   "planted_B_xy": [
+    148.6,
+    61.4
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.38,
+    "peak_snr": 273.8,
+    "integrated_snr": 289.8
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.42,
+    "peak_snr": 274.2,
+    "integrated_snr": 287.2
+   }
+  },
+  {
+   "trial": 3,
+   "planted_A_xy": [
+    107.0,
+    202.5
+   ],
+   "planted_B_xy": [
+    199.0,
+    195.5
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.89,
+    "peak_snr": 274.5,
+    "integrated_snr": 290.9
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.87,
+    "peak_snr": 272.4,
+    "integrated_snr": 283.9
+   }
+  },
+  {
+   "trial": 4,
+   "planted_A_xy": [
+    99.3,
+    37.1
+   ],
+   "planted_B_xy": [
+    191.3,
+    30.1
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.99,
+    "peak_snr": 271.9,
+    "integrated_snr": 289.3
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 1.01,
+    "peak_snr": 273.3,
+    "integrated_snr": 286.3
+   }
+  },
+  {
+   "trial": 5,
+   "planted_A_xy": [
+    68.8,
+    67.7
+   ],
+   "planted_B_xy": [
+    160.8,
+    60.7
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 97,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.64,
+    "peak_snr": 273.8,
+    "integrated_snr": 312.3
+   },
+   "vacated": {
+    "rank": 8,
+    "distance_px": 1.63,
+    "peak_snr": 3069.9,
+    "integrated_snr": 842.9
+   }
+  },
+  {
+   "trial": 6,
+   "planted_A_xy": [
+    145.6,
+    100.4
+   ],
+   "planted_B_xy": [
+    237.6,
+    93.4
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.65,
+    "peak_snr": 274.3,
+    "integrated_snr": 293.1
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.5,
+    "peak_snr": 274.1,
+    "integrated_snr": 281.4
+   }
+  },
+  {
+   "trial": 7,
+   "planted_A_xy": [
+    27.5,
+    222.7
+   ],
+   "planted_B_xy": [
+    119.5,
+    215.7
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 96,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 1.16,
+    "peak_snr": 274.1,
+    "integrated_snr": 289.6
+   },
+   "vacated": {
+    "rank": 7,
+    "distance_px": 1.83,
+    "peak_snr": 3708.9,
+    "integrated_snr": 1038.3
+   }
+  },
+  {
+   "trial": 8,
+   "planted_A_xy": [
+    141.9,
+    272.1
+   ],
+   "planted_B_xy": [
+    233.9,
+    265.1
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 0.56,
+    "peak_snr": 275.2,
+    "integrated_snr": 289.4
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 0.52,
+    "peak_snr": 275.5,
+    "integrated_snr": 289.8
+   }
+  },
+  {
+   "trial": 9,
+   "planted_A_xy": [
+    113.6,
+    252.4
+   ],
+   "planted_B_xy": [
+    205.6,
+    245.4
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 0.32,
+    "peak_snr": 273.0,
+    "integrated_snr": 288.2
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 0.32,
+    "peak_snr": 273.5,
+    "integrated_snr": 288.4
+   }
+  },
+  {
+   "trial": 10,
+   "planted_A_xy": [
+    49.0,
+    101.7
+   ],
+   "planted_B_xy": [
+    141.0,
+    94.7
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.81,
+    "peak_snr": 273.0,
+    "integrated_snr": 292.9
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.81,
+    "peak_snr": 274.7,
+    "integrated_snr": 284.3
+   }
+  },
+  {
+   "trial": 11,
+   "planted_A_xy": [
+    162.8,
+    69.8
+   ],
+   "planted_B_xy": [
+    254.8,
+    62.8
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 97,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 0.21,
+    "peak_snr": 273.7,
+    "integrated_snr": 280.0
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 0.5,
+    "peak_snr": 274.6,
+    "integrated_snr": 290.8
+   }
+  },
+  {
+   "trial": 12,
+   "planted_A_xy": [
+    127.6,
+    233.0
+   ],
+   "planted_B_xy": [
+    219.6,
+    226.0
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.22,
+    "peak_snr": 275.4,
+    "integrated_snr": 291.6
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.33,
+    "peak_snr": 272.5,
+    "integrated_snr": 280.7
+   }
+  },
+  {
+   "trial": 13,
+   "planted_A_xy": [
+    143.1,
+    188.1
+   ],
+   "planted_B_xy": [
+    235.1,
+    181.1
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.75,
+    "peak_snr": 272.9,
+    "integrated_snr": 291.9
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.75,
+    "peak_snr": 273.3,
+    "integrated_snr": 288.8
+   }
+  },
+  {
+   "trial": 14,
+   "planted_A_xy": [
+    87.0,
+    135.4
+   ],
+   "planted_B_xy": [
+    179.0,
+    128.4
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.74,
+    "peak_snr": 273.5,
+    "integrated_snr": 290.4
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.67,
+    "peak_snr": 273.3,
+    "integrated_snr": 289.2
+   }
+  },
+  {
+   "trial": 15,
+   "planted_A_xy": [
+    147.4,
+    55.5
+   ],
+   "planted_B_xy": [
+    239.4,
+    48.5
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 1.24,
+    "peak_snr": 273.8,
+    "integrated_snr": 290.3
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 1.21,
+    "peak_snr": 275.9,
+    "integrated_snr": 290.9
+   }
+  },
+  {
+   "trial": 16,
+   "planted_A_xy": [
+    151.6,
+    93.6
+   ],
+   "planted_B_xy": [
+    243.6,
+    86.6
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.58,
+    "peak_snr": 274.4,
+    "integrated_snr": 288.4
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.54,
+    "peak_snr": 272.4,
+    "integrated_snr": 286.2
+   }
+  },
+  {
+   "trial": 17,
+   "planted_A_xy": [
+    128.2,
+    88.5
+   ],
+   "planted_B_xy": [
+    220.2,
+    81.5
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 13,
+    "distance_px": 0.99,
+    "peak_snr": 273.0,
+    "integrated_snr": 293.2
+   },
+   "vacated": {
+    "rank": 14,
+    "distance_px": 0.99,
+    "peak_snr": 272.5,
+    "integrated_snr": 289.9
+   }
+  },
+  {
+   "trial": 18,
+   "planted_A_xy": [
+    68.4,
+    240.5
+   ],
+   "planted_B_xy": [
+    160.4,
+    233.5
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 97,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 0.4,
+    "peak_snr": 274.7,
+    "integrated_snr": 276.1
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 1.18,
+    "peak_snr": 271.5,
+    "integrated_snr": 288.7
+   }
+  },
+  {
+   "trial": 19,
+   "planted_A_xy": [
+    98.6,
+    157.6
+   ],
+   "planted_B_xy": [
+    190.6,
+    150.6
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 0.49,
+    "peak_snr": 273.4,
+    "integrated_snr": 291.0
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 0.61,
+    "peak_snr": 272.8,
+    "integrated_snr": 298.3
+   }
+  },
+  {
+   "trial": 20,
+   "planted_A_xy": [
+    80.1,
+    271.6
+   ],
+   "planted_B_xy": [
+    172.1,
+    264.6
+   ],
+   "recovered": true,
+   "appeared_found": true,
+   "vacated_found": true,
+   "n_blobs": 98,
+   "sigma_MJy_sr": 0.0312,
+   "appeared": {
+    "rank": 14,
+    "distance_px": 1.01,
+    "peak_snr": 273.8,
+    "integrated_snr": 287.1
+   },
+   "vacated": {
+    "rank": 13,
+    "distance_px": 0.96,
+    "peak_snr": 272.6,
+    "integrated_snr": 288.5
+   }
+  }
+ ]
+}
