@@ -116,6 +116,21 @@ input[type="range"]{flex:1 1 160px;accent-color:var(--electric);min-height:44px}
 .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
 .sw{width:22px;height:0;border-top:3px dotted var(--blue-bright);display:inline-block}
 
+/* ---------- tap to inspect ---------- */
+.inspect-box{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:14px}
+.inspect-box h4{margin:0;font-size:1rem}
+.inspect-quick{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+.iq{appearance:none;border:1px solid var(--line);background:var(--panel2);color:var(--ink);
+  font-family:"Archivo",sans-serif;font-weight:600;font-size:.82rem;border-radius:999px;
+  padding:6px 13px;cursor:pointer;min-height:38px}
+.iq:hover{border-color:var(--blue)}
+.iq[aria-pressed="true"]{background:var(--electric);border-color:var(--electric);color:#fff}
+.inspect-name{font-weight:700;font-size:1.03rem;margin-top:12px}
+.inspect-type{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--ink-faint);margin-top:2px}
+.inspect-spark{margin-top:10px}
+.inspect-spark svg{width:100%;height:auto;display:block}
+.inspect-note{font-size:.85rem;color:var(--ink-dim);margin-top:8px}
+
 /* ---------- pipeline / scan ---------- */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
 @media (max-width:820px){.steps{grid-template-columns:1fr 1fr}}
@@ -429,7 +444,7 @@ section{scroll-margin-top:72px}
   <div class="sec-head">
     <span class="status tested">Tested example</span>
     <h2>Blink comparator: five epochs of one field</h2>
-    <p>The five SPHEREx epochs above, shown in sequence (north up, east left). The stars stay fixed; comet 3I/ATLAS moves between frames. Use Play, the slider, or Prev / Next to compare epochs.</p>
+    <p>The five SPHEREx epochs above, shown in sequence (north up, east left). The stars stay fixed; comet 3I/ATLAS moves between frames. Use Play, the slider, or Prev / Next to compare epochs. Tap any object in the image — the comet or a bright star — and the readout panel shows its position and its measured spectral fingerprint.</p>
   </div>
   <div class="cmp-grid">
     <div>
@@ -447,7 +462,16 @@ section{scroll-margin-top:72px}
             <circle id="markerRing" cx="168.3" cy="470.0" r="30" fill="none" stroke="#5EA8FF" stroke-width="3.5"/>
             <circle id="markerDot" cx="168.3" cy="470.0" r="4" fill="#fff"/>
           </g>
+          <g id="inspectLayer" style="display:none">
+            <circle id="inspectRing" cx="0" cy="0" r="42" fill="none" stroke="#E9B44C" stroke-width="3.5"/>
+          </g>
+          <g id="cmpCross" style="display:none">
+            <circle id="cmpCrossRing" cx="450" cy="450" r="34" fill="none" stroke="#E9B44C" stroke-width="3"/>
+            <line id="cmpCrossH" x1="402" y1="450" x2="498" y2="450" stroke="#E9B44C" stroke-width="2"/>
+            <line id="cmpCrossV" x1="450" y1="402" x2="450" y2="498" stroke="#E9B44C" stroke-width="2"/>
+          </g>
         </svg>
+        <div class="clicklayer" id="cmpClick" role="button" tabindex="0" aria-label="Image of the sky field. Tap the comet or a bright star to inspect it. Keyboard: use the arrow keys to move the gold ring, then press Enter to inspect."></div>
       </div>
       <div class="controls">
         <button class="btn primary" id="playBtn" aria-pressed="false">▶ Play blink</button>
@@ -468,7 +492,7 @@ section{scroll-margin-top:72px}
         <button class="edot" type="button" data-ep="3" aria-pressed="false" aria-label="Epoch 4">4</button>
         <button class="edot" type="button" data-ep="4" aria-pressed="false" aria-label="Epoch 5">5</button>
       </div>
-      <p class="hint">Three ways to compare: press Play, drag the slider, or tap an epoch number. The readout on the right updates for every frame.</p>
+      <p class="hint">Three ways to compare: press Play, drag the slider, or tap an epoch number. The readout updates for every frame. To inspect an object, tap it in the image — or tap the image once and use the arrow keys to move the gold ring, then Enter.</p>
       <div class="toggles">
         <label class="tgl"><input type="checkbox" id="tglTrack" checked /> Comet marker &amp; track</label>
         <label class="tgl"><input type="checkbox" id="tglGaia" /> Gaia star labels</label>
@@ -477,6 +501,7 @@ section{scroll-margin-top:72px}
         <span><i class="dot" style="background:var(--blue-bright)"></i> marker — the moving object</span>
         <span><i class="sw"></i> dotted line — its measured path</span>
         <span><i class="dot" style="background:#FFD98A"></i> Gaia label — a fixed, catalogued star</span>
+        <span><i class="dot" style="background:var(--gold)"></i> gold ring — the object you are inspecting</span>
       </div>
     </div>
     <div class="panel readout" aria-live="polite">
@@ -493,6 +518,19 @@ section{scroll-margin-top:72px}
       </dl>
       <p class="small band-note">Epochs 1–3 were recorded by detector <b>D2</b>, epochs 4–5 by <b>D3</b> — a different infrared band (see Limits).</p>
       <p class="small" style="margin-top:10px"><b>Gaia labels:</b> the brightest catalogued stars in the field, mapped onto the image to ~1 arcsecond. No catalogued star coincides with the comet's position in any epoch; the measured distances are given under Results.</p>
+      <div class="inspect-box" id="inspectBox">
+        <h4>Tap to inspect</h4>
+        <p class="small" style="margin-top:4px">Tap the comet or any bright star in the image — or pick one here — for its position and measured spectral fingerprint: flux at the wavelength sampled in each epoch (aperture photometry, MJy/sr·px).</p>
+        <div class="inspect-quick" role="group" aria-label="Inspect an object">
+          <button class="iq" type="button" data-inspect="comet" aria-pressed="false">Comet 3I/ATLAS</button>
+          <button class="iq" type="button" data-inspect="A" aria-pressed="false">Star A</button>
+          <button class="iq" type="button" data-inspect="B" aria-pressed="false">Star B</button>
+          <button class="iq" type="button" data-inspect="C" aria-pressed="false">Star C</button>
+        </div>
+        <div id="inspectBody" aria-live="polite">
+          <p class="small" style="margin-top:10px">No object selected yet. The comet sits inside the blue ring and moves between frames; Stars A–C are the three brightest fixed Gaia stars, with fingerprints measured in the Fingerprint Lab below.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -839,6 +877,142 @@ section{scroll-margin-top:72px}
     gaiaLayer.appendChild(t);
   });
 
+  /* ----- tap to inspect ----- */
+  var COMET_LAM = [1.213, 1.334, 1.467, 1.665, 1.827];
+  var COMET_FLUX = [66.8, 66.4, 66.1, 55.9, 46.0];
+  var STARS = [
+    {key:"A", name:"Field star A", gaia:"3815552467916713728", x:217.3, y:193.2, g:"8.74", col:"0.50",
+     lam:[1.24,1.36,1.49,1.69,1.86], flux:[1086,979,922,781,669],
+     note:"A fixed star: its position never changes, but its measured flux falls steadily as the sampled wavelength increases. The fingerprint records colour behaviour, not motion."},
+    {key:"B", name:"Field star B", gaia:"3815554220263349888", x:185.3, y:327.4, g:"9.05", col:"1.18",
+     lam:[1.22,1.35,1.48,1.68,1.84], flux:[1780,1848,1850,1745,1591],
+     note:"Nearly flat through detector D2, lower in D3 — a different colour behaviour from star A, measured in the same five frames."},
+    {key:"C", name:"Field star C", gaia:"3815461930005982592", x:524.7, y:48.5, g:"9.80", col:"0.64",
+     lam:[1.25,1.37,1.51,1.71,1.87], flux:[460,443,433,353,329],
+     note:"The faintest of the three measured stars, still recorded at high signal-to-noise in all five epochs. Any of the field's 751 Gaia stars can be recorded this way."},
+    {key:"g4", name:"Gaia star · G 10.6", gaia:null, x:66.4, y:335.2, g:"10.6", col:null, lam:null, flux:null, note:null},
+    {key:"g5", name:"Gaia star · G 11.2", gaia:null, x:214.1, y:334.2, g:"11.2", col:null, lam:null, flux:null, note:null},
+    {key:"g6", name:"Gaia star · G 11.7", gaia:null, x:282.3, y:724.5, g:"11.7", col:null, lam:null, flux:null, note:null},
+    {key:"g7", name:"Gaia star · G 11.7", gaia:null, x:326.2, y:206.2, g:"11.7", col:null, lam:null, flux:null, note:null},
+    {key:"g8", name:"Gaia star · G 11.7", gaia:null, x:518.1, y:570.2, g:"11.7", col:null, lam:null, flux:null, note:null}
+  ];
+  var inspectSel = null; /* {kind:"comet"} or {kind:"star", star:<STARS entry>} */
+  var inspectBody = document.getElementById("inspectBody");
+  var inspectLayer = document.getElementById("inspectLayer");
+  var inspectRing = document.getElementById("inspectRing");
+  var iqBtns = document.querySelectorAll(".iq");
+  function sparkSVG(lams, fluxes, hi, color){
+    var min = Math.min.apply(null, fluxes), max = Math.max.apply(null, fluxes);
+    var pad = ((max - min) || 1) * 0.18; min -= pad; max += pad;
+    var pts = [], circles = "", i, x, y;
+    for (i = 0; i < fluxes.length; i++){
+      x = 16 + i * (228 / (fluxes.length - 1));
+      y = 48 - ((fluxes[i] - min) / (max - min)) * 36;
+      pts.push(x.toFixed(1) + "," + y.toFixed(1));
+      circles += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4" fill="' + color + '"/>';
+      if (i === hi) circles += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="8.5" fill="none" stroke="#E9B44C" stroke-width="2.5"/>';
+    }
+    return '<div class="inspect-spark"><svg viewBox="0 0 260 74" role="img" aria-label="Fingerprint chart: flux ' +
+      fluxes[0] + ' to ' + fluxes[fluxes.length - 1] + ' as sampled wavelength rises from ' + lams[0] + ' to ' +
+      lams[lams.length - 1] + ' micrometres. The gold ring marks the epoch currently shown.">' +
+      '<line x1="12" y1="52" x2="252" y2="52" stroke="rgba(140,170,220,.4)"/>' +
+      '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + color + '" stroke-width="2.5"/>' + circles +
+      '<text x="16" y="30" fill="#EAF1FF" font-size="10" font-family="IBM Plex Mono" text-anchor="middle">' + fluxes[0] + '</text>' +
+      '<text x="244" y="30" fill="#EAF1FF" font-size="10" font-family="IBM Plex Mono" text-anchor="middle">' + fluxes[fluxes.length - 1] + '</text>' +
+      '<text x="16" y="68" fill="#A9BAD8" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">' + lams[0].toFixed(2) + 'µm</text>' +
+      '<text x="244" y="68" fill="#A9BAD8" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">' + lams[lams.length - 1].toFixed(2) + 'µm</text>' +
+      '</svg></div>';
+  }
+  function renderInspect(){
+    if (!inspectSel || !inspectBody) return;
+    var html, rx, ry, activeKey = null;
+    if (inspectSel.kind === "comet"){
+      var e = EPOCHS[cur];
+      activeKey = "comet"; rx = e.x; ry = e.y;
+      html = '<p class="inspect-name">Comet 3I/ATLAS — the mover</p>' +
+        '<p class="inspect-type">Moving object · not in the Gaia fixed-star catalogue</p>' +
+        '<dl class="ro-grid" style="margin-top:10px">' +
+        '<dt>Epoch</dt><dd>' + (cur + 1) + ' of 5 · ' + e.time + ' UTC</dd>' +
+        '<dt>RA / Dec</dt><dd>' + e.ra + ' / ' + e.dec + '</dd>' +
+        '<dt>Detector</dt><dd>' + e.det + '</dd>' +
+        '<dt>This epoch</dt><dd>λ ' + COMET_LAM[cur].toFixed(3) + ' µm · flux ' + COMET_FLUX[cur].toFixed(1) + '</dd>' +
+        '<dt>Travelled</dt><dd>' + e.dist + '</dd></dl>' +
+        sparkSVG(COMET_LAM, COMET_FLUX, cur, "#5EA8FF") +
+        '<p class="inspect-note">Fingerprint: flux 66.8 → 46.0 as the sampled wavelength rose 1.213 → 1.827 µm — nearly flat inside D2, with the drop at the D2 → D3 change (see Fingerprint Lab and Limits). Step through the epochs and this panel follows the comet.</p>';
+    } else {
+      var s = inspectSel.star;
+      activeKey = s.key; rx = s.x; ry = s.y;
+      html = '<p class="inspect-name">' + s.name + '</p>' +
+        '<p class="inspect-type">Fixed star · ' + (s.gaia ? 'Gaia DR3 ' + s.gaia : 'Gaia DR3 catalogue') + '</p>' +
+        '<dl class="ro-grid" style="margin-top:10px">' +
+        '<dt>G magnitude</dt><dd>' + s.g + '</dd>' +
+        (s.col ? '<dt>Colour BP−RP</dt><dd>' + s.col + '</dd>' : '') +
+        '<dt>Position</dt><dd>Fixed — identical in all 5 epochs</dd>';
+      if (s.flux){
+        html += '<dt>This epoch</dt><dd>λ ' + s.lam[cur].toFixed(2) + ' µm · flux ' + s.flux[cur] + '</dd></dl>' +
+          sparkSVG(s.lam, s.flux, cur, "#8A70CE") +
+          '<p class="inspect-note">' + s.note + '</p>';
+      } else {
+        html += '</dl><p class="inspect-note">No fingerprint is published for this star on this page. Fingerprints were measured for the comet and the three brightest stars (Stars A–C, in the Fingerprint Lab); the same aperture method applies to any of the 751 Gaia sources in the field.</p>';
+      }
+    }
+    inspectBody.innerHTML = html;
+    inspectRing.setAttribute("cx", rx); inspectRing.setAttribute("cy", ry);
+    inspectLayer.style.display = "";
+    iqBtns.forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-inspect") === activeKey ? "true" : "false"); });
+  }
+  function selectInspect(sel){ inspectSel = sel; renderInspect(); }
+  function inspectAt(x, y){
+    var e = EPOCHS[cur];
+    var best = {kind:"comet"}, bestD = Math.sqrt((x - e.x) * (x - e.x) + (y - e.y) * (y - e.y));
+    STARS.forEach(function(s){
+      var d = Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y));
+      if (d < bestD){ bestD = d; best = {kind:"star", star:s}; }
+    });
+    if (bestD <= 78){ selectInspect(best); return; }
+    inspectSel = null;
+    inspectLayer.style.display = "none";
+    iqBtns.forEach(function(b){ b.setAttribute("aria-pressed", "false"); });
+    inspectBody.innerHTML = '<p class="small" style="margin-top:10px">No catalogued object at that point. The inspectable objects are the comet (inside the blue ring) and the bright Gaia stars — tap closer to one of them, or pick Comet / Star A–C above.</p>';
+  }
+  iqBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-inspect");
+      if (k === "comet"){ selectInspect({kind:"comet"}); return; }
+      for (var i = 0; i < STARS.length; i++){ if (STARS[i].key === k){ selectInspect({kind:"star", star:STARS[i]}); return; } }
+    });
+  });
+  var cmpClick = document.getElementById("cmpClick");
+  cmpClick.addEventListener("click", function(ev){
+    var r = ev.currentTarget.getBoundingClientRect();
+    inspectAt((ev.clientX - r.left) / r.width * 900, (ev.clientY - r.top) / r.height * 900);
+  });
+  /* keyboard inspect: arrow keys move the gold ring, Enter inspects */
+  var cmpCross = document.getElementById("cmpCross");
+  var cmpCrossRing = document.getElementById("cmpCrossRing"), cmpCrossH = document.getElementById("cmpCrossH"), cmpCrossV = document.getElementById("cmpCrossV");
+  var ix = 450, iy = 450;
+  function drawCmpCross(){
+    cmpCrossRing.setAttribute("cx", ix); cmpCrossRing.setAttribute("cy", iy);
+    cmpCrossH.setAttribute("x1", ix - 48); cmpCrossH.setAttribute("x2", ix + 48);
+    cmpCrossH.setAttribute("y1", iy); cmpCrossH.setAttribute("y2", iy);
+    cmpCrossV.setAttribute("y1", iy - 48); cmpCrossV.setAttribute("y2", iy + 48);
+    cmpCrossV.setAttribute("x1", ix); cmpCrossV.setAttribute("x2", ix);
+  }
+  cmpClick.addEventListener("blur", function(){ cmpCross.style.display = "none"; });
+  cmpClick.addEventListener("keydown", function(ev){
+    var step = ev.shiftKey ? 8 : 30, used = true;
+    if (ev.key === "ArrowLeft" || ev.key === "ArrowRight" || ev.key === "ArrowUp" || ev.key === "ArrowDown"){
+      cmpCross.style.display = "";
+    }
+    if (ev.key === "ArrowLeft") ix = Math.max(0, ix - step);
+    else if (ev.key === "ArrowRight") ix = Math.min(900, ix + step);
+    else if (ev.key === "ArrowUp") iy = Math.max(0, iy - step);
+    else if (ev.key === "ArrowDown") iy = Math.min(900, iy + step);
+    else if (ev.key === "Enter" || ev.key === " ") inspectAt(ix, iy);
+    else used = false;
+    if (used){ ev.preventDefault(); drawCmpCross(); }
+  });
+
   /* ----- comparator ----- */
   var frames = document.querySelectorAll("#cmpStage img.frame");
   var slider = document.getElementById("epochSlider");
@@ -860,6 +1034,7 @@ section{scroll-margin-top:72px}
     ro.elapsed.textContent = e.elapsed; ro.dist.textContent = e.dist; ro.snr.textContent = e.snr;
     ring.setAttribute("cx", e.x); ring.setAttribute("cy", e.y);
     dot.setAttribute("cx", e.x); dot.setAttribute("cy", e.y);
+    renderInspect();
   }
   var playBtn = document.getElementById("playBtn");
   function setPlay(on){
